@@ -29,14 +29,12 @@ int main() {
 
     string rootFileName = "b_mass.root";
     TFile *rootOutFile = new TFile(rootFileName.c_str(), "recreate"); // This is a root file for storing our histograms
-    gPad->Update();
-    gPad->SetLogy();
 
-    TH1D *b_mass = new TH1D("b_mass", "B mass ", 50, 0, 20); // this is a histogram
+    TH1D *b_mass = new TH1D("b_mass", "B mass ", 50, 3, 6.5); // this is a histogram
     // it has a 50 bins, equally spaced between 50 and 100 GeV
     // the b_mass has to be repetated twice
     // a second one with more bins could be called
-    TH1D *b_mass_more_bins = new TH1D("b_mass_more_bins", "B mass ", 100, 0, 20);
+    TH1D *b_mass_more_bins = new TH1D("b_mass_more_bins", "B mass ", 100, 3, 6.5);
     // it has 100 bins
 
     // declare variables
