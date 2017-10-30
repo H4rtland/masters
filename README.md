@@ -1,5 +1,5 @@
-# Searching for Massive New Particles decaying to Jets at ATLAS
+## Searching for Massive New Particles decaying to Jets at ATLAS
 
-## Thomas Hartland
+#### Thomas Hartland
 
-### 2017/18 masters project
+##### 2017/18 masters project
