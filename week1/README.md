@@ -39,7 +39,11 @@ After nagivating to the file z_read.root in the file menu on the left, the two g
 
 Two more example data sets, fourVectorsBig.txt and fourVectorsHuge.txt have B+ meson decays to three particles.
 z_read_root.cpp can be modified to read the extra four-vector, and to calculate the invariant mass of the B+
-using the new vector. A log plot can be made by right clicking on the canvas
+using the new vector. The file b_read_root.cpp contains these changes.
+
+![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/b_mass.png?raw=true "B mass distribution")
+
+A log plot can be made by right clicking on the canvas
 (outside of the plot, for example in the very top left corner) in the TBrowser and selecting SetLogy.
 Alternatively, the commands
 
@@ -48,4 +52,3 @@ Alternatively, the commands
 
 can be used to the same effect.
 
-![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/b_mass.png?raw=true "B mass distribution")
