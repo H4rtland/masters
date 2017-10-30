@@ -31,3 +31,4 @@ and starting a new object browser from the ROOT CLI.
 
     root [0] new TBrowser
 
+![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/z_mass.png?raw=true "Z mass distribution")
