@@ -27,9 +27,6 @@ int main() {
 
     ofstream outputdata("b.out"); // create a file to store the results you calculate.
 
-    TCanvas *c1 = new TCanvas("c1", "b masses", 10, 10, 600, 380);
-    c1->SetLogy();
-
     string rootFileName = "b_mass.root";
     TFile *rootOutFile = new TFile(rootFileName.c_str(), "recreate"); // This is a root file for storing our histograms
     gPad->Update();
