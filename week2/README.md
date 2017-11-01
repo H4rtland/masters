@@ -18,4 +18,4 @@ On remote machine, in ~/venvs
 Draws a minimal canvas with a basic histogram on it.
 It looks more like a scatter plot with large horizontal error bars.
 
-![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/first_rootpy_hist?raw=true "Basic histogram")
+![image](https://github.com/H4rtland/masters/blob/master/week2/imgs/first_rootpy_hist?raw=true "Basic histogram")
