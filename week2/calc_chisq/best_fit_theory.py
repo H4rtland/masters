@@ -5,7 +5,7 @@ def calc_chi_sq(data_file_name, theory_file_name):
     # Calculate chi_sq/N for a given data file and theory file
     with open(data_file_name, "r") as data_file:
         data = [line for line in data_file.readlines() if not len(line.split()) == 0]
-        data = [tuple(map(float, d.split())) for d in data]
+        data = [map(float, d.split()) for d in data]
         data_values, sigmas = zip(*data)
 
     with open(theory_file_name, "r") as theory_file:
@@ -26,7 +26,7 @@ for theory, chi_sq in fits:
     print "Theory {0}: chi_sq/N = {1}".format(theory, chi_sq)
 
 # Choose theory corresponding to the chi_sq/N closest to 1
-best_theory = min([(theory, abs(chi_sq-1)) for theory, chi_sq in fits],
-                  key=operator.itemgetter(1))[0]
+best_theory, _ = min([(theory, abs(chi_sq-1)) for theory, chi_sq in fits],
+                  key=operator.itemgetter(1))
 
 print "The best theory is theory {0}".format(best_theory)
