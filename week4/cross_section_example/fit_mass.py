@@ -13,22 +13,22 @@ gROOT.SetBatch(True)
 
 class MyMassSpectrum(IParametricFunctionOneDim):
     def __init__(self):
-        self.pars = []
+        self.pars = None
     
     def Clone(self):
         return MyMassSpectrum()
     
     def DoEval(self, x):
         scale = x/14
-        arg1 = pars[0]*math.pow(1-scale, pars[1])
-        arg2 = pars[2]+pars[3]*math.log(scale)
+        arg1 = self.pars[0]*math.pow(1-scale, self.pars[1])
+        arg2 = self.pars[2]+self.pars[3]*math.log(scale)
         arg3 = math.pow(scale, arg2)
         return arg1*arg3
     
     def DoEvalPar(self, x, p):
         scale = x/14
-        arg1 = pars[0]*math.pow(1-scale, pars[1])
-        arg2 = pars[2]+pars[3]*math.log(scale)
+        arg1 = self.pars[0]*math.pow(1-scale, self.pars[1])
+        arg2 = self.pars[2]+self.pars[3]*math.log(scale)
         arg3 = math.pow(scale, arg2)
         return arg1*arg3
         
@@ -45,6 +45,8 @@ class MyMassSpectrum(IParametricFunctionOneDim):
 
 class Fits:
     def __init__(self):
+        gROOT.LoadMacro("FitMass.C+g")
+        
         self.p_n = [0,]*100
         self.e_n = [0,]*100
         self.stored_parameters = [0,]*100
@@ -69,13 +71,12 @@ class Fits:
         arglist = array("d", [0,]*10)
         ierflg = ROOT.Long(0)
         arglist[0] = ROOT.Double(1)
-        #import pprint
-        #pprint.pprint(dir(self.gMinuit))
-        #self.gMinuit.mnexcm("SET ERR", arglist, 1, ierflg)
+        
+        self.gMinuit.mnexcm("SET ERR", arglist, 1, ierflg)
         self.gMinuit.mnparm(0, "p1", 5e-6, 1e-7, 0, 0, ierflg)
         self.gMinuit.mnparm(1, "p2", 10, 10, 0, 0, ierflg)
         self.gMinuit.mnparm(2, "p3", -5.3, 1, 0, 0, ierflg)
-        self.gMinuit.mnparm(3, "p4", -4e2, 1e-2, 0, 0, ierflg)
+        self.gMinuit.mnparm(3, "p4", -4e-2, 1e-2, 0, 0, ierflg)
         
         arglist[0] = ROOT.Double(0)
         arglist[1] = ROOT.Double(0)
@@ -95,9 +96,10 @@ class Fits:
         self.gMinuit.mnexcm("MIGRAD", arglist, 2, ierflg)
 
     def Fitfcn(self, npar, gin, fcnVal, par, iflag):
-        print("Doing fitfcn")
         chisq = 0
         mf = MyMassSpectrum()
+        mf.SetParameters(par)
+        mf = ROOT.MyMassSpectrum()
         mf.SetParameters(par)
         ig = GaussIntegrator()
         ig.SetFunction(mf)
@@ -106,12 +108,12 @@ class Fits:
         for i in range(0, self.num_bins):
             val = ig.Integral(self.xmins[i], self.xmaxes[i])/(self.xmaxes[i]-self.xmins[i])
             chiValue = 0
-            
             chiValue = (self.data[i]-val)/self.errors[i]
+            chiValue *= chiValue
             chisq += chiValue
             self.data_fits[i] = val
         
-        fcnVal[0] = chisq
+        fcnVal[0] = ROOT.Double(chisq)
 
 
 def fit_mass():
