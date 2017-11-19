@@ -43,7 +43,7 @@ import array
 arglist = array("d", [0,]*10)
 arglist[0] = ROOT.Double(1)
 ```
-converts your list of ten 0s to an array of doubles.
+converts your list of ten 0s to an array of doubles and changes the first value to a 1.
 In other cases you're allowed to not convert things. For example
 ```python
 ierflg = ROOT.Long(0)
@@ -51,3 +51,7 @@ self.gMinuit.mnparm(0, "p1", 5e-6, 1e-7, 0, 0, ierflg)
 ```
 ierflg did need to be converted, the other numbers didn't.
 Based on the error message it's because ierflg is then used to pass by reference.
+
+Well, in the end we get back the exact same plot that is produced by the C++ code.
+
+![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_example/output.png "")
