@@ -2,6 +2,7 @@
 ###### November 13th-19th 2017
 
 #### Translating FitMass.cpp to Python
+##### Using code in cross_section_example
 
 Fitting the parameters of a function to a curve involves a trial and error process
 of slowly changing things until it eventually works - and so does converting a ROOT
@@ -57,6 +58,7 @@ Well, in the end we get back the exact same plot that is produced by the C++ cod
 ![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_example/output.png "")
 
 #### Fitting actual data
+##### Using code in cross_section_data
 
 fit_mass.py in cross_section_data loads data from a histogram in 
 Fourth_Year_Data/mjj_data15_13TeV_00276262_physics_Main_total_final.root.
@@ -70,6 +72,13 @@ a consistent 5% error, it uses sqrt(N) (where N is the number of events in a bin
 
 FitMass.cpp is renamed to FitFunction.cpp and is stripped of everything except
 the MyMassSpectrum class which is needed for the Python code to work.
+Of course, once again we need to run
+```
+$ root -l
+root [0] .L IABStyle.cpp+g
+root [1] .L FitFunction.cpp+g
+```
+before the python code will work.
 
 #### Resources
 
