@@ -45,7 +45,7 @@ class MyMassSpectrum(IParametricFunctionOneDim):
 
 class Fits:
     def __init__(self):
-        gROOT.LoadMacro("FitMass.C+g")
+        gROOT.LoadMacro("FitFunction.cpp+g")
         
         self.p_n = [0,]*100
         self.e_n = [0,]*100
@@ -118,7 +118,7 @@ class Fits:
 
 
 def fit_mass():
-    gROOT.LoadMacro("IABStyle.C+g")
+    gROOT.LoadMacro("IABStyle.cpp+g")
     ROOT.IABstyles.global_style()
     TGaxis.SetMaxDigits(3)
 

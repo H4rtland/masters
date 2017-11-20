@@ -35,8 +35,6 @@ using std::right;
 
 using namespace std;
 
-namespace FitFunction {
-
 // c++ class used for integrating a function in root (yes it is complicated)
 class MyMassSpectrum : public ROOT::Math::IParametricFunctionOneDim {
   private:
@@ -74,6 +72,3 @@ class MyMassSpectrum : public ROOT::Math::IParametricFunctionOneDim {
 
     unsigned int NPar() const { return 4; }
 };
-
-}
-
