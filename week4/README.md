@@ -55,3 +55,9 @@ Based on the error message it's because ierflg is then used to pass by reference
 Well, in the end we get back the exact same plot that is produced by the C++ code.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_example/output.png "")
+
+
+#### Resources
+
+TMinuit fitting  
+https://pprc.qmul.ac.uk/~bevan/yeti/fitting.pdf
