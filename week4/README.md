@@ -56,6 +56,17 @@ Well, in the end we get back the exact same plot that is produced by the C++ cod
 
 ![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_example/output.png "")
 
+#### Fitting actual data
+
+fit_mass.py in cross_section_data loads data from a histogram in 
+Fourth_Year_Data/mjj_data15_13TeV_00276262_physics_Main_total_final.root.
+Other than that, it's almost exactly the same as the example file.
+As is loads the data it scales the x axis values by a factor of 1/10 so they
+are between 1 and 10 rather than 1000 to 10000, this is so that the initial fitting
+parameters used in the example still work. The error values are also changed, so that instead of
+a consistent 5% error, it uses sqrt(N) (where N is the number of events in a bin). 
+
+![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_data/output.png "")
 
 #### Resources
 
