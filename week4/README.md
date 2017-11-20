@@ -65,7 +65,7 @@ Using code in cross_section_data.
 fit_mass.py in cross_section_data loads data from a histogram in 
 Fourth_Year_Data/mjj_data15_13TeV_00276262_physics_Main_total_final.root.
 Other than that, it's almost exactly the same as the example file.
-As is loads the data it scales the x axis values by a factor of 1/10 so they
+As is loads the data it scales the x axis values by a factor of 1e-3 so they
 are between 1 and 10 rather than 1000 to 10000, this is so that the initial fitting
 parameters used in the example still work. The error values are also changed, so that instead of
 a consistent 5% error, it uses sqrt(N) (where N is the number of events in a bin). 
