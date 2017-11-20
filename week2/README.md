@@ -1,7 +1,7 @@
-### Week 2
+## Week 2
 ###### October 30th - November 5th 2017
 
-#### First look at rootpy
+### First look at rootpy
 On remote machine, in ~/venvs
 
     $ virtualenv --system-site-packages rootpy
@@ -20,7 +20,7 @@ It looks more like a scatter plot with large horizontal error bars.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week2/imgs/first_rootpy_hist.png "Basic histogram")
 
-#### Rewriting z_read_root.cpp to rootpy
+### Rewriting z_read_root.cpp to rootpy
 
 Well, I've been at it all day and I can't seem to get rootpy histograms to stop looking like they do in the plot above,
 and to start looking like the output of z_read_root.cpp.
@@ -97,7 +97,7 @@ On fourVectorsHuge.txt (about 700k events), that was only a ~2.5x slowdown.
 That's fine for now, maybe later it will be significant.
 
 
-#### Resources
+### Resources
 
 http://hep.lancs.ac.uk/bertram/2016-17/fourVectorsHuge.txt  
 fourVectorsHuge.txt (too large to add to repository)

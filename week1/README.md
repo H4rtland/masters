@@ -1,7 +1,7 @@
-### Week 1
+## Week 1
 ###### October 23rd-29th 2017
 
-#### Access HEP cluster
+### Access HEP cluster
 
     ssh -Y thartland@lapa.lancs.ac.uk
 
@@ -9,7 +9,7 @@ Already have some example data sets and example analysis scripts to test if ROOT
 Works well on the cluster, not on my laptop.
 Laptop has errors linking the include files / libraries so I'll use the remote machine from now on.
 
-#### C++ compilation
+### C++ compilation
 
 First example reads in pairs of decay product four vectors and calculates Z boson masses.
 The data file is z.dat. It is read by z_read.cpp, which is compiled with the command:
@@ -18,7 +18,7 @@ The data file is z.dat. It is read by z_read.cpp, which is compiled with the com
     
 The Z boson masses are written to z.out.
 
-#### Using ROOT
+### Using ROOT
 
 Example file is z_read_root.cpp.
 Needs ROOT libraries / include files to compile.
@@ -35,7 +35,7 @@ After nagivating to the file z_read.root in the file menu on the left, the two g
 
 ![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/z_mass.png?raw=true "Z mass distribution")
 
-#### Modifying for a new data set
+### Modifying for a new data set
 
 Two more example data sets, fourVectorsBig.txt and fourVectorsHuge.txt have B+ meson decays to three particles.
 z_read_root.cpp can be modified to read the extra four-vector, and to calculate the invariant mass of the B+
