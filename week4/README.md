@@ -1,13 +1,13 @@
 ### Week 4
 ###### November 13th-19th 2017
 
-#### Translating FitMass.C to Python
+#### Translating FitMass.cpp to Python
 
 Fitting the parameters of a function to a curve involves a trial and error process
 of slowly changing things until it eventually works - and so does converting a ROOT
 program in C++ to a PyROOT script.
 
-Luckily, PyROOT can load compiled ROOT macros, so I didn't have to even touch IABStyle.C.
+Luckily, PyROOT can load compiled ROOT macros, so I didn't have to even touch IABStyle.cpp.
 I also loaded a compiled version of the MyMassSpectrum fitting function straight from the
 C++ version, because an equivalent class written in Python caused this error in the GaussIntegrator
 
@@ -17,8 +17,8 @@ even when I had clearly just set the function. Replacing this with the compiled 
 This means that
 ```
 $ root -l
-root [0] .L IABStyle.C+g
-root [1] .L FitMass.C+g
+root [0] .L IABStyle.cpp+g
+root [1] .L FitMass.cpp+g
 ```
 needs to be run before the Python code can work. At this point is there any reason to
 even use the Python version? No, but it's too late to turn back now.
@@ -67,6 +67,9 @@ parameters used in the example still work. The error values are also changed, so
 a consistent 5% error, it uses sqrt(N) (where N is the number of events in a bin). 
 
 ![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_data/output.png "")
+
+FitMass.cpp is renamed to FitFunction.cpp and is stripped of everything except
+the MyMassSpectrum class which is needed for the Python code to work.
 
 #### Resources
 
