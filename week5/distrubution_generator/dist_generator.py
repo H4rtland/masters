@@ -39,7 +39,7 @@ model = Model(1.70475e1, 8.43990, -4.63149, -2.43023e-3)
 
 
 
-fig, ax = plt.subplots(figsize=(5,4))
+fig, ax = plt.subplots(figsize=(10,8))
 
 
 ax.loglog(x_range, [model.model_at(x) for x in x_range], color="black", label="Model")
@@ -50,6 +50,8 @@ ax.set_ylim(bottom=1, top=1e6)
 ax.yaxis.grid(True)
 ax.xaxis.grid(True, which="both")
 
+ax.set_xlabel("M [TeV/c$^2$]")
+ax.set_ylabel("Num events")
 
 generated_data = [poisson.ppf(random.random(), model.model_at(left)) for left in bins]
 
@@ -57,5 +59,6 @@ ax.scatter(bins, generated_data,
            color="red", marker="x", zorder=20, s=20, label="Generated")
 
 ax.legend()
+plt.tight_layout()
 
-plt.show()
+plt.savefig("generated_dist.png")

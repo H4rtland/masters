@@ -107,7 +107,17 @@ that number of events gives an area equal to the random number.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week5/imgs/eqn1.png "")
 
-To find k in this equation, we use the 
+To find k in this equation, we use the percent point function from scipy.  
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html
+
+This gives us the value on the x axis which has 60% of the area less than that value, for instance.
+We get a percentage from random.random(). As the average of the random uniform is 0.5, the expected
+value from our inverse poisson is the value where 50% of the area is less than that x value, which is
+of course the mean.
+
+We do this for each bin, and can plot a generated distribution over the model, like so.
+
+![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png)
 
 
 ### Resources
