@@ -117,7 +117,7 @@ of course the mean.
 
 We do this for each bin, and can plot a generated distribution over the model, like so.
 
-![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png)
+![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png "")
 
 
 ### Resources
