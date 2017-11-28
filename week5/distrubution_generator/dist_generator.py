@@ -1,7 +1,9 @@
 import math
+import random
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import poisson
 
 class Model:
     def __init__(self, p1, p2, p3, p4):
@@ -47,46 +49,12 @@ ax.xaxis.grid(True, which="both")
 #ax.bar(bins[:-1], [model.model_at(left) for left, width in zip(bins, bin_widths)],
 #        width=bin_widths, log=False, color="None", edgecolor="black")
 
-ax.scatter(bins[:-1], [model.model_at(left) for left, width in zip(bins, bin_widths)],
+
+generated_data = [poisson.ppf(random.random(), model.model_at(left)) for left in bins]
+
+ax.scatter(bins, generated_data,
            color="red", marker="x", zorder=20, s=20, label="Generated")
 
 ax.legend()
 
 plt.show()
-
-
-""">>> numpy.factorial(0.5)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: 'module' object has no attribute 'factorial'
->>> import scipy.misc
->>> scipy.misc.factorial(0.5)
-array(0.8862269254527579)
->>> def poisson(x, mean):
-...     return math.exp(-mean) * math.pow(mean, x) / scipy.misc.factorial(x)
-... 
->>> integrate.quad(lambda x: poisson(x, 10), 0, 10)
-(0.520988849268643, 1.24886160452434e-14)
->>> for i in numpy.arange(0, 15, 0.001):
-...     if integrate.quad(lambda x: poisson(x, 10), 0, i) > 0.5:
-...             print("mean", i)
-...             break
-... 
-('mean', 0.0)
->>> for i in numpy.arange(0, 15, 0.001):
-...     if integrate.quad(lambda x: poisson(x, 10), 0, i) > 0.5:
-...             print("mean", i)
-...             break
-... 
-('mean', 0.0)
->>> integrate.quad(lambda x: poisson(x, 10), 0, 10)
-(0.520988849268643, 1.24886160452434e-14)
->>> integrate.quad(lambda x: poisson(x, 10), 0, )
-KeyboardInterrupt
->>> for i in numpy.arange(0, 15, 0.001):
-...     if integrate.quad(lambda x: poisson(x, 10), 0, i)[0] > 0.5:
-...             print("mean", i)
-...             break
-... 
-('mean', 9.8330000000000002)
-"""

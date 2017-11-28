@@ -95,3 +95,22 @@ for i in range(0, nbins-1):
 I set the fitting function to exclude between 2 and 3 TeV, and clearly it is working
 as intended. It would be great if excited quarks / quantum black holes / etc. made
 a signal that was that easy to spot. 
+
+### Generating a sample distribution
+
+I spent a while trying to figure out how to invert the poisson function, but it turns out that
+there's a scipy function for exactly that. Glad I'm not stuck with C++.
+
+For generating a sample number of events for each bin, we can choose a random number between 0 and 1,
+and select a number of events in a bin such that the integral of the poisson distribution up to
+that number of events gives an area equal to the random number.
+
+![image](https://github.com/H4rtland/masters/blob/master/week5/imgs/eqn1.png "")
+
+To find k in this equation, we use the 
+
+
+### Resources
+
+Generate equations to embed in markdown  
+https://www.codecogs.com/latex/eqneditor.php
