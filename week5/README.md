@@ -119,7 +119,6 @@ We do this for each bin, and can plot a generated distribution over the model, l
 
 ![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png "")
 
-
 ### Resources
 
 Generate equations to embed in markdown  
