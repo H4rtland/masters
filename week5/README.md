@@ -119,6 +119,14 @@ We do this for each bin, and can plot a generated distribution over the model, l
 
 ![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png "")
 
+The black line in the above plot is NOT a fitted line, but the exact distribution predicted by the model.
+This happens to use parameter values obtained previously from actual fitting to actual data, but is not a
+fit itself.
+
+I'm actually amazed with how well this worked, it looks exactly like the form of the data. An exact match to
+the distribution where the number of events is high, and starting to deviate from the curve at about
+5 TeV.
+
 ### Resources
 
 Generate equations to embed in markdown  
