@@ -61,10 +61,31 @@ in a similar fitting method, which produces a chi^2 for a poisson distributed n_
 ![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/eqn2.png "")
 
 This is not necessary to be used for fitting, but can be used to test the goodness
-of a fit in comparison to a regular chi^2 calculation.
+of a fit in comparison to a regular chi^2 calculation. If it is used for fitting,
+the parameters of the fit *are* different, closer to the values obtained from chi^2.
 
 The final plot produced by the maximum log-likelihood method looks almost exactly the same
 as the plots from previous weeks (as you would hope).
 
 ![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/log_likelihood_output.png "")
 
+
+### Plotting significance below distribution
+
+Drawing multiple plots on the same canvas in ROOT is not particularly fun.
+Even after I got it working to a reasonable level, it's still drawing over some things,
+axes labels are being clipped, the different sizes of the plots means that text is being
+scaled to unreadable levels.
+
+This is the current state of what I've got.
+
+![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/significance_output_1.png "")
+
+The lower part of the plots is (data-theory)/theory. I hid the values where there is no data point
+by setting the point to -100 manually. This ensures that it is hidden as long as the actual data
+doesn't get the that value. I'm plotting /theory and not /sqrt(theory) because plotting with the
+square root distributes the values at all x values between -10 and 10 on the y axis. It could be
+that for a given bin, the data value and the model prediction value used in this calculation are
+for slightly different x-axis positions, or because the code that calculates the value integrates over
+the width of the bin. I could try again by manually calculating the values using the derived
+parameters, but that will have to wait for tomorrow.
