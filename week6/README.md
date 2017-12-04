@@ -6,7 +6,7 @@
 Maximum likelihood is an alternative method to chi^2 fitting.
 It is in general equivalent to chi^2 for bins with large numbers of events,
 but handles bins with few events more accurately. This is especially important
-in this project, where we will be dealing rare decay processes which may only
+in this project, where we will be dealing with rare decay processes which may only
 produce up to tens of events.
 
 Mathematically, the log of the likelihood, L, is given by this equation.
@@ -55,8 +55,8 @@ Finally, at the end of the function, we send back the negative of the likelihood
 fcnVal[0] = 2*(model_total-likelihood)
 ```
 The factor of two here is a correction to get the values of the errors
-in the parameters report by Minuit right. The factor of 2 also appears
-in a similar fitting method, which produced a chi^2 for a poisson distributed n_i.
+in the parameters reported by Minuit right. The factor of 2 also appears
+in a similar fitting method, which produces a chi^2 for a poisson distributed n_i.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/eqn2.png "")
 
