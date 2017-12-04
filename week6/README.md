@@ -83,7 +83,9 @@ This is the current state of what I've got.
 
 The lower part of the plots is (data-theory)/theory. I hid the values where there is no data point
 by setting the point to -100 manually. This ensures that it is hidden as long as the actual data
-doesn't get the that value. I'm plotting /theory and not /sqrt(theory) because plotting with the
+doesn't get the that value.
+
+I'm plotting /theory and not /sqrt(theory) because plotting with the
 square root distributes the values at all x values between -10 and 10 on the y axis. It could be
 that for a given bin, the data value and the model prediction value used in this calculation are
 for slightly different x-axis positions, or because the code that calculates the value integrates over
