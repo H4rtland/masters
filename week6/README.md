@@ -62,3 +62,9 @@ in a similar fitting method, which produces a chi^2 for a poisson distributed n_
 
 This is not necessary to be used for fitting, but can be used to test the goodness
 of a fit in comparison to a regular chi^2 calculation.
+
+The final plot produced by the maximum log-likelihood method looks almost exactly the same
+as the plots from previous weeks (as you would hope).
+
+![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/log_likelihood_output.png "")
+
