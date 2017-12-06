@@ -114,4 +114,8 @@ hist.Add(hist_blackmax)
 data, and yet the peak is still too high to be realistic. If a higher energy distribution were
 chosen there would be less black hole events, but also less background. This might just need
 one of the data sets to be multiplied or divided by a factor of 10 or so to give a realistic
-ratio. 
+ratio.
+
+Also, the peak is so wide that it is difficult to exclude it for fitting purposes,
+as it affects the number of events all the way up to the energy where events stop altogether.
+The fit above is excluding the region 3.5-4.5 TeV.
