@@ -91,3 +91,7 @@ that for a given bin, the data value and the model prediction value used in this
 for slightly different x-axis positions, or because the code that calculates the value integrates over
 the width of the bin. I could try again by manually calculating the values using the derived
 parameters, but that will have to wait for tomorrow.
+
+### Adding a peak from BlackMax
+
+![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/blackmax_output.png "")
