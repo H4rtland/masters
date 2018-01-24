@@ -75,3 +75,67 @@ optimised to fit the model peak to the "data" peak on top of the background.
 At this point, the optimisation shouldn't have to do anything at all because the "data"
 peak is just the model we injected, but first we will change the code to generate a
 random background and random peak each time.
+
+#### Random distribution generation
+
+Starting with our two distributions, the background `hist` and the simulated q\*
+distribution `hist_model`. First the model is smoothed, normalised, and scaled
+to a given number of events.
+
+```python
+hist_model.Smooth(1)
+hist_model.Scale(1/hist_model.Integral())
+hist_model.Scale(40000)
+```
+
+We then overwrite the bin contents in `hist` with a random background + random peak.
+The background is modelled using previously fitted parameters for just the background.
+
+```python
+class BackgroundModel:
+    def __init__(self, p1, p2, p3, p4):
+        self.p1, self.p2, self.p3, self.p4 = p1, p2, p3, p4
+
+    def model_at(x):
+        scale = x/14
+        a1 = self.p1 * math.pow(1-scale, self.p2)
+        a2 = self.p3 * (self.p4 * math.log(scale))
+        a3 = math.pow(scale, a2)
+        return a1*a3
+
+    def random_at(self, x):
+        return poisson.ppf(random.random(), self.model_at(x))
+```
+
+After initialising a background model
+
+```python
+background = BackgroundModel(1.70475e1, 8.43990, -4.63149, -2.43023e-3)
+```
+
+we can generate random background values for a given Mjj. Random peak values are generated
+in the same way, only using the `hist_model` for the mean value of the poisson distribution.
+Then, we can start overwriting the bins in `hist`.
+
+```python
+for b in range(1, hist.GetNBinsX()+1):
+    if hist.GetBinContent(b) > 0 or hist.GetBinLowEdge(b)/1000 > 2:
+        x = hist.GetBinCenter(b)/1000
+        bg = background.random_at(x)
+        peak = 0
+        if hist_model.GetBinContent(b) > 0:
+            peak = poisson.ppf(random.random(), hist_model.GetBinContent(b))
+        hist.SetBinContent(b, bg+peak)
+```
+
+The first `if` makes sure that we aren't generating values where there is no background
+data on the very left of the distribution, and the second `if` is there because supplying
+a mean of 0 to poisson.ppf makes it return NaN, which we would have to ignore anyway,
+so we leave the value at 0.
+
+If all of the `peak` values are added up, it can be confirmed that the number of injected
+events matches the number used to scale the simulated distribution after it has been normalised.
+
+From here, `hist` can be used for fitting as usual. Now we don't need to add the two histograms
+together as we were doing before (`hist.Add(hist_model)`) because we're doing it on a bin
+by bin basis.
