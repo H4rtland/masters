@@ -139,3 +139,105 @@ events matches the number used to scale the simulated distribution after it has 
 From here, `hist` can be used for fitting as usual. Now we don't need to add the two histograms
 together as we were doing before (`hist.Add(hist_model)`) because we're doing it on a bin
 by bin basis.
+
+#### Fitting
+
+A variable `model_scale_values` is added to the Fits class, which stores the bin contents
+of the model peak. In the fitting function we then combine these values with the background
+to fit to the data.
+
+```python
+model_val += self.model_scale_values[i]*par[4]
+```
+
+par[4] is the parameter used to fit the peak. It is almost always 1, as the randomly generated
+peak should pretty much follow the shape of the scaled histogram used as a basis for the
+random generation.
+
+From here the process involves generating a huge number of random distributions for different
+amounts of injected events and seeing how many outliers we get. This means that the whole
+thing needs to be set up to be automated, because running this manually that many times
+is entirely out of the question.
+
+Rather than outputting the canvas as a png at the end of `fit_mass()`, let's have it return the
+number of events that our fit suggests are in the peak. After the fitting is complete,
+we can get par[4] from TMinuit and use this to scale the simulated peak by, and then
+integrate that to get a number of events.
+
+In fact, let's start in a whole new function so we can leave the plotting code as is.
+We'll call it `fit_peak`, and it will do everything `fit_mass` did up to and including
+initiating the fitting algorithm, but none of the plotting. Following that we only need
+to add these lines
+
+```python
+par4 = ROOT.Double(0)
+par4_error = ROOT.Double(0)
+
+fits.gMinuit.GetParameter(4, par4, par4_error)
+
+hist_model.Scale(par4)
+return hist_model.Integral()
+```
+
+Then we need a function that will automate this, for now it will just print one trial run.
+
+```python
+def fit_many():
+    print(fit_peak(40000))
+```
+
+```
+(root-py2)[thartland@lapa week8]$ python fit_mass_qstar.py
+40695.500592
+```
+
+Also let's time that.
+
+```
+(root-py2)[thartland@lapa week8]$ time python fit_mass_qstar.py
+39973.6158615
+
+real    0m8.096s
+user    0m5.289s
+sys 0m0.463s
+```
+
+So we're at 8 seconds per trial. If I wanted to do 1000 trials just for one input value, that
+alone would take almost 2.5 hours at this rate. Maybe it's time to start setting this up
+as a batch process to run in parallel. For now, I'll try 100 trials and see where that gets me.
+
+By the way, this is what the fit looks like for 40000 events.
+
+![image](https://github.com/H4rtland/masters/blob/master/week8/imgs/output_qstar_40000.png "")
+
+It's a smaller bump than what we were working with earlier. Also, this line is fairly useful to
+include now.
+
+```python
+self.gMinuit.SetPrintLevel(-1)
+```
+
+This suppresses the output of the fitting process. Since we're going to be running this over
+and over again there's no point having any output. There is still an error output if it
+can't reach the target tolerance though, which might be problematic. For 40000 that shouldn't
+be an issue so for now I can just print the results to stdout and redirect that to a file.
+Or, maybe I should write the file myself so that I can have debug information about how
+far in we are printed out every x trials.
+
+This is what we will test now. Results are written to a file, and the `LoadMacro` calls
+have been moved into `fit_many` so they are only called once.
+
+```python
+def fit_many():
+    start_time = time.time()
+    gROOT.LoadMacro("FitFunction.cpp+g")
+    gROOT.LoadMacro("IABStyle.cpp+g")
+    with open("results.txt", "w") as out_file:
+        for i in range(0, 100):
+            if i%10 == 0:
+                print("Starting trial {0}".format(i))
+            n = fit_peak(40000)
+            out_file.write("{0}\n".format(n))
+
+    print("Took {0:.2f} seconds in total".format(time.time()-start_time))
+```
