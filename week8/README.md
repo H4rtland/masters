@@ -283,11 +283,6 @@ higher end than the lower end.
 
 Indeed the mean is slightly above 40000.
 
-```
-(root-py2)[thartland@lapa week8]$ awk '{a+=$1} END{print a/NR}' results.txt
-40224.3
-```
-
 With only 100 trials, I'm prepared to believe that this is just a random fluctuation,
 but it's entirely possible that this arises either in the random generation or in
 the fitting process.
@@ -295,7 +290,8 @@ the fitting process.
 There are still some cases where we get
 
 ```
-ROOT::Math::ROOT::Math::GausIntegratorOneDim:0: RuntimeWarning: Failed to reach the desired tolerance```
+ROOT::Math::ROOT::Math::GausIntegratorOneDim:0: RuntimeWarning: Failed to reach the desired tolerance
+```
 
 messages spammed onto our screen to let's add a line to disable those now.
 
