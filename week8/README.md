@@ -241,3 +241,87 @@ def fit_many():
 
     print("Took {0:.2f} seconds in total".format(time.time()-start_time))
 ```
+
+
+I've just run this code now, and the total time was 395 seconds, or 3.95 seconds per trial.
+This means that the overhead of starting up and loading the macros was significant when
+we were only running a single trial. The time cost per trial is about half as bad as it
+looked then. Now lets sort the results and look at the lowest and highest values.
+
+```
+(root-py2)[thartland@lapa week8]$ sort -n results.txt | head
+39097.0222349
+39103.719706
+39177.4546496
+39199.4231545
+39221.6650534
+39270.3841326
+39291.7048243
+39303.3595948
+39409.4609512
+39442.8473285
+(root-py2)[thartland@lapa week8]$ sort -n results.txt | tail
+41091.3577978
+41202.5064386
+41217.6574412
+41250.3184881
+41308.8110504
+41323.2770772
+41379.4758942
+41407.9562989
+41421.7114583
+41707.0568271
+```
+
+Nothing too interesting there, although it looks as though we may be skewed more towards the
+higher end than the lower end.
+
+```
+(root-py2)[thartland@lapa week8]$ awk '{a+=$1} END{print a/NR}' results.txt
+40224.3
+```
+
+Indeed the mean is slightly above 40000.
+
+```
+(root-py2)[thartland@lapa week8]$ awk '{a+=$1} END{print a/NR}' results.txt
+40224.3
+```
+
+With only 100 trials, I'm prepared to believe that this is just a random fluctuation,
+but it's entirely possible that this arises either in the random generation or in
+the fitting process.
+
+There are still some cases where we get
+
+```
+ROOT::Math::ROOT::Math::GausIntegratorOneDim:0: RuntimeWarning: Failed to reach the desired tolerance```
+
+messages spammed onto our screen to let's add a line to disable those now.
+
+```python
+self.gMinuit.mnexcm("SET NOWarnings", arglist, 0, ierflg);
+```
+
+And to test that I'll run the script again with 200 trials.
+
+Ok, that line doesn't remove the runtime warnings in the GausIntegrator, and I don't know
+how to turn off the warnings for the GausIntegrator at all.
+
+200 trials results:
+
+```
+(root-py2)[thartland@lapa week8]$ sort -n results.txt | head -n 3
+38615.144054
+38888.5741837
+39054.2748119
+(root-py2)[thartland@lapa week8]$ sort -n results.txt | tail -n 3
+41622.3623496
+41709.2987929
+42055.3456171
+(root-py2)[thartland@lapa week8]$ awk '{a+=$1} END{print a/NR}' results.txt
+40238.9
+```
+
+Still nothing particularly interesting, although we can see that the average has remained
+just about the same as the first 100 trials. 
