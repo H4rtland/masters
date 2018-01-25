@@ -50,18 +50,7 @@ class MyMassSpectrum : public ROOT::Math::IParametricFunctionOneDim {
         Double_t arg2 = pars[2] + pars[3] * TMath::Log(scale);
         Double_t arg3 = TMath::Power(scale, arg2);
         
-        // gauss
-        // pars[4] scale factor
-        // pars[5] mean
-        // pars[6] standard deviation
-        Double_t arg4 = 0;
-        if (pars[6] != 0) {
-            arg4 = (x - pars[5]) / pars[6];
-        }
-        Double_t arg5 = pars[4] * TMath::Exp(-0.5*arg4*arg4);
-        
-        return (arg1 * arg3) + arg5;
-        // return (x * p[0]) + (x * x * p[1]);
+        return (arg1 * arg3);
     }
 
     // implementation that allows you to set and change paramaters
@@ -72,19 +61,8 @@ class MyMassSpectrum : public ROOT::Math::IParametricFunctionOneDim {
         Double_t arg2 = p[2] + p[3] * TMath::Log(scale);
         Double_t arg3 = TMath::Power(scale, arg2);
 
-        // gauss
-        // pars[4] scale factor
-        // pars[5] mean
-        // pars[6] standard deviation
-        Double_t arg4 = 0;
-        if (p[6] != 0) {
-            arg4 = (x - p[5]) / p[6];
-        }
-        Double_t arg5 = p[4] * TMath::Exp(-0.5*arg4*arg4);
         
-        return (arg1 * arg3) + arg5;
-        // return arg1 * arg3;
-        // return (x * p[0]) + (x * x * p[1]);
+        return (arg1 * arg3);
     }
 
     ROOT::Math::IBaseFunctionOneDim *Clone() const { return new MyMassSpectrum(); }
@@ -93,5 +71,5 @@ class MyMassSpectrum : public ROOT::Math::IParametricFunctionOneDim {
 
     void SetParameters(const double *p) { pars = p; }
 
-    unsigned int NPar() const { return 7; }
+    unsigned int NPar() const { return 5; }
 };

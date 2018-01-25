@@ -64,18 +64,18 @@ void h1_style(TH1 *h, int line_width, int line_color, int line_style, int fill_s
     h->SetMarkerColor(marker_color);
     h->SetMarkerSize(marker_size);
     h->SetStats(optstat);
-    h->SetLabelFont(62, "X");      // 42
-    h->SetLabelFont(62, "Y");      // 42
+    h->SetLabelFont(63, "X");      // 42
+    h->SetLabelFont(63, "Y");      // 42
     h->SetLabelOffset(0.005, "X"); // D=0.005
     h->SetLabelOffset(0.005, "Y"); // D=0.005
-    h->SetLabelSize(0.05, "X");
-    h->SetLabelSize(0.05, "Y");
+    h->SetLabelSize(12, "X");
+    h->SetLabelSize(12, "Y");
     h->SetTitleOffset(0.8, "X");
     h->SetTitleOffset(1.00, "Y");
     h->SetTitleSize(0.06, "X");
     h->SetTitleSize(0.06, "Y");
-    h->SetLabelFont(62, "X");
-    h->SetLabelFont(62, "Y");
+    h->SetLabelFont(63, "X");
+    h->SetLabelFont(63, "Y");
     h->SetTitle(0);
 }
 
@@ -94,12 +94,12 @@ void h1_style(TGraph *h, int line_width, int line_color, int line_style, int fil
     h->SetMarkerColor(marker_color);
     h->SetMarkerSize(marker_size);
     h->SetTitle(0);
-    h->GetXaxis()->SetLabelFont(62);      // 42
-    h->GetYaxis()->SetLabelFont(62);      // 42
+    h->GetXaxis()->SetLabelFont(63);      // 42
+    h->GetYaxis()->SetLabelFont(63);      // 42
     h->GetXaxis()->SetLabelOffset(0.005); // D=0.005
     h->GetYaxis()->SetLabelOffset(0.005); // D=0.005
-    h->GetXaxis()->SetLabelSize(0.05);
-    h->GetYaxis()->SetLabelSize(0.05);
+    h->GetXaxis()->SetLabelSize(12);
+    h->GetYaxis()->SetLabelSize(12);
     h->GetXaxis()->SetTitleOffset(0.8);
     h->GetYaxis()->SetTitleOffset(0.8);
     h->GetXaxis()->SetTitleSize(0.06);
@@ -125,12 +125,12 @@ void h1_style(TGraphErrors *h, int line_width, int line_color, int line_style, i
     h->SetTitle(0);
     optstat = 0;
 
-    h->GetXaxis()->SetLabelFont(62);      // 42
-    h->GetYaxis()->SetLabelFont(62);      // 42
+    h->GetXaxis()->SetLabelFont(63);      // 42
+    h->GetYaxis()->SetLabelFont(63);      // 42
     h->GetXaxis()->SetLabelOffset(0.005); // D=0.005
     h->GetYaxis()->SetLabelOffset(0.005); // D=0.005
-    h->GetXaxis()->SetLabelSize(0.05);
-    h->GetYaxis()->SetLabelSize(0.05);
+    h->GetXaxis()->SetLabelSize(12);
+    h->GetYaxis()->SetLabelSize(12);
     h->GetXaxis()->SetTitleOffset(0.8);
     h->GetYaxis()->SetTitleOffset(0.8);
     h->GetXaxis()->SetTitleSize(0.06);
