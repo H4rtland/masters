@@ -178,7 +178,6 @@ class Fits:
             for lower, higher in self.exclude_regions:
                 if lower < self.xmins[i] < higher:
                     continue
-            
             model_val = ig.Integral(self.xmins[i], self.xmaxes[i]) / (self.xmaxes[i]-self.xmins[i])
             #if self.final:
             #    print(self.xmins[i], model_val, self.model_scale_values[i]*par[4])
@@ -473,7 +472,25 @@ def fit_significance(num_injected_events):
     fits.errors = [math.sqrt(x) for x in fits.data]
     fits.num_bins = nbins
 
+    remove_bins = 0
+    for x in fits.data:
+        if fits.data == 0:
+            remove_bins += 1
+        else:
+            break
+    nbins -= remove_bins
+    xwidth = xwidth[remove_bins:]
+    xmiddle = xmiddle[remove_bins:]
+    fits.xmins = fits.xmins[remove_bins:]
+    fits.xmaxes = fits.xmaxes[remove_bins:]
+    fits.data = fits.data[remove_bins:]
+    fits.data_fits = fits.data_fits[remove_bins:]
+    fits.errors = fits.errors[remove_bins:]
+    fits.num_bins = nbins
+    fits.model_scale_values = fits.model_scale_values[remove_bins:]
+
     x, y = fits.run_mass_fit(num_injected_events)
+    y = [math.exp(-a) for a in y]
     #print(list(zip(x, y)))
     #par4 = ROOT.Double(0)
     #par4_error = ROOT.Double(0)
