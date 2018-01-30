@@ -32,3 +32,57 @@ And with the final fitting stage enabled:
 
 The RMS is reduced by a factor half with the last stage disabled. The second distribution
 seems to be more gaussian so I'll keep the code in this state for now.
+
+The analysis process for this week is as follows:
+* Set up a random background + peak
+* Fit the background
+* Rather than fitting the peak, set Nx to a range of set values and calculate the likeliness
+of that fit accurately describing the particular distribution.
+* This will be used to calculate 95% confidence level limits on the cross section, by setting
+the injected number of events to 0 and iterating until we find the point where the
+number of events in the fit is so high that it couldn't possibly describe the background data.
+
+This will involve making the last fitting stage into a loop. After first fitting as normal to find
+the best fit value, we can iterate over a range of possible injected events. Again using a mean
+of 40000 injected events:
+
+```python
+for N in range(35000, 45001, 500):
+    self.gMinuit.DefineParameter(4, "p5", N, 0, 0, 1e12)
+    self.gMinuit.FixParameter(4)
+    self.gMinuit.mnexcm("simplex", arglist, 2, ierflg)
+    self.gMinuit.mnexcm("MIGRAD", arglist, 2, ierflg)
+    best_fit_value = ROOT.DOuble(0)
+    self.gMinuit.mnstat(best_fit_value, ROOT.Double(0), ROOT.Double(0),
+                        ROOT.Long(0), ROOT.Long(0) ROOT.Long(0))
+```
+
+We redefine the parameter because there is no way to set it to a specific value otherwise.
+We then run the fit, and use mnstat to extract the best value of the fit so far, which is
+stored in `best_fit_value`. The other arguments to that function just absorb some other
+values that don't need to be saved.
+
+For now the values of `N` and `best_fit_value` are then stored into lists and returned
+from the function.
+
+I now have another new main function, `fit_significance(num_injected_events)`, which runs
+the fitting and those takes those lists and plots them.
+
+```python
+x, y = fits.run_mass_fit(num_injected_events)
+
+canvas = TCanvas("dist", "dist", 0, 0, 650, 450)
+graph = TGraph(len(x), array("d", x), array("d", y))
+ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth/2, ROOT.IABstyles.Scolor,
+                        1, 0, 0, -1111.0, -1111.0, 508, 508, 8,
+                        ROOT.IABstyles.Scolor, 0.1, 0)
+graph.SetMarkerColor(2)
+graph.SetMarkerStyle(3)
+graph.SetMarkerSize(1.5)
+graph.Draw("ap")
+canvas.SaveAs("sig_dist.png")
+```
+
+The result of which looks like this
+
+![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/best_fit_value_dist.png "")
