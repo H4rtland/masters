@@ -123,3 +123,5 @@ This is the ratio of likelihoods chi(n). This since we're returning these values
 there is nothing extra needed to change to plot them.
  
 ![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/L_ratio_dist.png "")
+
+My mistake, fit_value-best_fit_value *already is* ln(chi), not chi.
