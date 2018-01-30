@@ -474,7 +474,6 @@ def fit_significance(num_injected_events):
     fits.num_bins = nbins
 
     x, y = fits.run_mass_fit(num_injected_events)
-    y = [1/a for a in y]
     #print(list(zip(x, y)))
     #par4 = ROOT.Double(0)
     #par4_error = ROOT.Double(0)
