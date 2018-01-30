@@ -89,7 +89,7 @@ The result of which looks like this
 
 From here we calculate the generic test statistic
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_chi.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_chi2.png "")
 
 In this equation, mu is the variable for the number of events N which we are iterating over.
 At each step of the iteration we will evaluate this chi function. The L functions are the
