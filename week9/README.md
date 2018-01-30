@@ -43,7 +43,7 @@ the injected number of events to 0 and iterating until we find the point where t
 number of events in the fit is so high that it couldn't possibly describe the background data.
 
 This will involve making the last fitting stage into a loop. After first fitting as normal to find
-the best fit value, we can iterate over a range of possible injected events. Again using a mean
+an actual best fit, we can iterate over a range of possible injected events. Again using a mean
 of 40000 injected events:
 
 ```python
@@ -52,7 +52,7 @@ for N in range(35000, 45001, 500):
     self.gMinuit.FixParameter(4)
     self.gMinuit.mnexcm("simplex", arglist, 2, ierflg)
     self.gMinuit.mnexcm("MIGRAD", arglist, 2, ierflg)
-    best_fit_value = ROOT.DOuble(0)
+    best_fit_value = ROOT.Double(0)
     self.gMinuit.mnstat(best_fit_value, ROOT.Double(0), ROOT.Double(0),
                         ROOT.Long(0), ROOT.Long(0) ROOT.Long(0))
 ```
@@ -86,3 +86,18 @@ canvas.SaveAs("sig_dist.png")
 The result of which looks like this
 
 ![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/best_fit_value_dist.png "")
+
+From here we calculate the generic test statistic
+
+![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_chi.png "")
+
+In this equation, mu is the variable for the number of events N which we are iterating over.
+At each step of the iteration we will evaluate this chi function. The L functions are the
+likelihood at the current N (mu), and at the value of N found by fitting with free
+parameters, the best fit (mu hat). As we are using log likelihoods, to take the ratio
+we only need to subtract the values. The theta hat in the above equation encompasses
+the other parameters of our fit.
+
+We will then calculate the significance of the fluctuation from 0, which is given by
+
+![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_q0.png "")
