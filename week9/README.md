@@ -52,17 +52,17 @@ for N in range(35000, 45001, 500):
     self.gMinuit.FixParameter(4)
     self.gMinuit.mnexcm("simplex", arglist, 2, ierflg)
     self.gMinuit.mnexcm("MIGRAD", arglist, 2, ierflg)
-    best_fit_value = ROOT.Double(0)
-    self.gMinuit.mnstat(best_fit_value, ROOT.Double(0), ROOT.Double(0),
+    fit_value = ROOT.Double(0)
+    self.gMinuit.mnstat(fit_value, ROOT.Double(0), ROOT.Double(0),
                         ROOT.Long(0), ROOT.Long(0) ROOT.Long(0))
 ```
 
 We redefine the parameter because there is no way to set it to a specific value otherwise.
 We then run the fit, and use mnstat to extract the best value of the fit so far, which is
-stored in `best_fit_value`. The other arguments to that function just absorb some other
+stored in `fit_value`. The other arguments to that function just absorb some other
 values that don't need to be saved.
 
-For now the values of `N` and `best_fit_value` are then stored into lists and returned
+For now the values of `N` and `fit_value` are then stored into lists and returned
 from the function.
 
 I now have another new main function, `fit_significance(num_injected_events)`, which runs
@@ -101,3 +101,25 @@ the other parameters of our fit.
 We will then calculate the significance of the fluctuation from 0, which is given by
 
 ![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_q0.png "")
+
+Now let's add back in the best fitting stage:
+
+```python
+# ... previous final fitting stage here ...
+best_fit_value = ROOT.Double(0)
+self.gMinuit.mnstat(best_fit_value, ROOT.Double(0), ROOT.Double(0),
+                    ROOT.Long(0), ROOT.Long(0), ROOT.Long(0))
+```
+
+And rather than just save the fit_value value for each iteration as before, save the difference
+of logs.
+
+```python
+x_values.append(N)
+y_values.append(fit_value-best_fit_value)
+```
+
+This is the ratio of likelihoods chi(n). This since we're returning these values for x and y
+there is nothing extra needed to change to plot them.
+ 
+![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/L-ratio_dist.png "")
