@@ -96,3 +96,14 @@ And, plotting x_values and exp(-y_values) gives us our gaussian probability dist
 And the cherry on top is, last week it was taking around 60 seconds to produce once of these
 plots with only 20 points, now it only takes 10 seconds to produce one with ~250 points.
 Not running the fitting code makes that much of a difference.
+
+It is on this distribution that we mark our 95% confidence level limits, based on the area
+under the curve. Rather than do that for this plot, let's now move on to the 0 events
+injection test.
+
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_40k_1.png "")
+
+For that, we get something like this. The whole distribution does shift to the left and right
+depending on the exact randomly generated input, but this one is roughly central.
+
+The next step is to produce a cumulative distribution from this.
