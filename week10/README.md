@@ -101,7 +101,7 @@ It is on this distribution that we mark our 95% confidence level limits, based o
 under the curve. Rather than do that for this plot, let's now move on to the 0 events
 injection test.
 
-![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_40k_1.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_0_1.png "")
 
 For that, we get something like this. The whole distribution does shift to the left and right
 depending on the exact randomly generated input, but this one is roughly central.
