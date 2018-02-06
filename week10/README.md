@@ -154,4 +154,8 @@ Here's one I made earlier:
 ![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/cumulative_dist_0_3.png "")
 
 This distribution is more skewed to the positive, meaning that the random generation
-must have made a small bump in the data that could be seen as a peak.
+must have made a small bump in the data that could be seen as a peak. Also, the peak goes much
+higher than one, which probably isn't a problem because I think it should be normalised anyway.
+This means that some of the N event trials were actually a better fit than the "best fit" fit
+was. Interestingly, the distribution does start at *exactly* 1. Does that mean that the
+"best fit" picked out a peak of 0, even when it clearly shouldn't have?
