@@ -149,6 +149,9 @@ canvas2.SaveAs("sig_cumsum.png")
 
 Here's one I made earlier:
 
-![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_0_2.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_0_3.png "")
 
-![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/cumulative_dist_0_2.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/cumulative_dist_0_3.png "")
+
+This distribution is more skewed to the positive, meaning that the random generation
+must have made a small bump in the data that could be seen as a peak.
