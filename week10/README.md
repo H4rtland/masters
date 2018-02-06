@@ -106,4 +106,49 @@ injection test.
 For that, we get something like this. The whole distribution does shift to the left and right
 depending on the exact randomly generated input, but this one is roughly central.
 
-The next step is to produce a cumulative distribution from this.
+The next step is to produce a cumulative distribution from this. For that I'll just be
+manually doing the maths in python for now.
+
+```python
+ycumulative = [sum(y[0:i]) for i in range(0, len(y))]
+ycumulative = [yval/max(ycumulative) for yval in ycumulative]
+```
+
+Then I'll find the point where the cumulative y values surpass 0.95.
+
+```python
+limit_x = 0
+limit_y = 0
+for xv, yv in zip(x, ycumulative):
+    if yv >= 0.95:
+        limit_x = xv
+        limit_y = yv
+        break
+```
+
+And plot a cumulative distribution graph with a line to show the limit.
+
+```python
+graph = TGraph(len(x), array("d", x), array("d", ycumulative))
+ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth/2, ROOT.IABstyles.Scolor,
+                        1, 0, 0, -1111.0, -1111.0, 508, 508, 8,
+                        ROOT.IABstyles.Scolor, 0.1, 0)
+graph.SetMarkerColor(4)
+graph.SetMarkerStyle(3)
+graph.SetMarkerSize(1.25)
+graph.Draw("ap")
+line = ROOT.TLine(limit_x, 0, limit_x, limit_y)
+line.SetLineColor(2)
+line.Draw("same")
+label = ROOT.TText()
+label.SetNDC()
+label.SetTextSize(0.03)
+label.DrawText(0.5, 0.7, "{0:.02f} confidence limit = {1:.02f} events".format(limit_y, limit_x))
+canvas2.SaveAs("sig_cumsum.png")
+```
+
+Here's one I made earlier:
+
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/prob_dist_0_2.png "")
+
+![image](https://github.com/H4rtland/masters/blob/master/week10/imgs/cumulative_dist_0_2.png "")

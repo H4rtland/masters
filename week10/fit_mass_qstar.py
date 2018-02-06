@@ -241,6 +241,7 @@ class Fits:
             #if peak_scale == 40000:
             #    print(i, "\txmin", self.xmins[i], "\tdata", self.data[i], "\tdata_fit", self.data_fits[i], "\tp", p, "\tdata_fit+p", self.data_fits[i]+p)
             if tmp == 0:
+                print("tmp == 0 here")
                 logtmp = math.log(sys.float_info.min)
             else:
                 logtmp = math.log(tmp)
@@ -560,5 +561,30 @@ def fit_significance(num_injected_events):
     graph.SetMarkerSize(1.25)
     graph.Draw("ap")
     canvas.SaveAs("sig_dist.png")
+
+    canvas2 = TCanvas("cumsum", "cumsum", 0, 0, 650, 450)
+    ycumulative = [sum(y[0:i]) for i in range(0, len(y))]
+    ycumulative = [yval/max(ycumulative) for yval in ycumulative]
+    limit_x = 0
+    limit_y = 0
+    for xv, yv in zip(x, ycumulative):
+        if yv >= 0.95:
+            limit_x = xv
+            limit_y = yv
+            break
+    graph = TGraph(len(x), array("d", x), array("d", ycumulative))
+    ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth/2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    graph.SetMarkerColor(4)
+    graph.SetMarkerStyle(3)
+    graph.SetMarkerSize(1.25)
+    graph.Draw("ap")
+    line = ROOT.TLine(limit_x, 0, limit_x, limit_y)
+    line.SetLineColor(2)
+    line.Draw("same")
+    label = ROOT.TText()
+    label.SetNDC()
+    label.SetTextSize(0.03)
+    label.DrawText(0.5, 0.7, "{0:.02f} confidence limit = {1:.02f} events".format(limit_y, limit_x))
+    canvas2.SaveAs("sig_cumsum.png")
 
 fit_significance(0)
