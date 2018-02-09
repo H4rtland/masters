@@ -176,3 +176,26 @@ Still, we do have 2268 lines of actual results, so I'll plot those before I go b
 
 This is much better! Each job was only running 250 trials, which takes about 10 minutes, so there's
 still plenty of space to scale into, both for the number of trials per job and the number of jobs.
+
+
+Also, while considering the x-axis limits on my histogram, I took another look at
+the results-all.txt file
+
+```
+[thartland@lapa week11]$ sort -n results-all.txt | tail
+1370
+1370
+1390
+1410
+1420
+1450
+1480
+1520
+2380
+2380
+```
+
+Those last two are some *serious* outliers. I think the next thing to do will be to have the
+python script output some extra files whenever it finds that the `max(ycumulative)` value is 0
+or when the 95% confidence level limit is above some value like 2000. This will help me
+debug some of these strange cases.
