@@ -25,7 +25,7 @@ sys     1m13.574s
 We need to generate much more data than this to get a good distribution, and *then* we are going
 to have to generate one of these for each mass data set that has been simulated for the q\*.
 This is the right time to start submitting this work to the physics department batch job service.
-This is a particularly suitable workload for such a servie, because it is "embarassingly
+This is a particularly suitable workload for such a service, because it is "embarassingly
 parellel" - each random generation and subsequent analysis has no dependence on any of the others,
 so they can be run completely separetely. Running 10 different jobs on the batch system will
 generate 10 times as much data in the same time as one job.
