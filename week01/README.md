@@ -33,7 +33,7 @@ and starting a new object browser from the ROOT CLI.
 
 After nagivating to the file z_read.root in the file menu on the left, the two generated distributions with different bin sized can be viewed.
 
-![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/z_mass.png?raw=true "Z mass distribution")
+![alt text](https://github.com/H4rtland/masters/blob/master/week01/imgs/z_mass.png?raw=true "Z mass distribution")
 
 ### Modifying for a new data set
 
@@ -41,7 +41,7 @@ Two more example data sets, fourVectorsBig.txt and fourVectorsHuge.txt have B+ m
 z_read_root.cpp can be modified to read the extra four-vector, and to calculate the invariant mass of the B+
 using the new vector. The file b_read_root.cpp contains these changes.
 
-![alt text](https://github.com/H4rtland/masters/blob/master/week1/imgs/b_mass.png?raw=true "B mass distribution")
+![alt text](https://github.com/H4rtland/masters/blob/master/week01/imgs/b_mass.png?raw=true "B mass distribution")
 
 A log plot can be made by right clicking on the canvas
 (outside of the plot, for example in the very top left corner) in the TBrowser and selecting SetLogy.

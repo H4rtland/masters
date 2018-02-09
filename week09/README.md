@@ -24,11 +24,11 @@ canvas.SaveAs("dist.png")
 
 This is the first look at the distribution for 200 trials with the final fitting stage disabled:
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/dist1.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/dist1.png "")
 
 And with the final fitting stage enabled:
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/dist2.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/dist2.png "")
 
 The RMS is reduced by a factor half with the last stage disabled. The second distribution
 seems to be more gaussian so I'll keep the code in this state for now.
@@ -85,11 +85,11 @@ canvas.SaveAs("sig_dist.png")
 
 The result of which looks like this
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/best_fit_value_dist.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/best_fit_value_dist.png "")
 
 From here we calculate the generic test statistic
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_chi.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/eqn_chi.png "")
 
 In this equation, mu is the variable for the number of events N which we are iterating over.
 At each step of the iteration we will evaluate this chi function. The L functions are the
@@ -100,7 +100,7 @@ the other parameters of our fit.
 
 We will then calculate the significance of the fluctuation from 0, which is given by
 
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/eqn_q0.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/eqn_q0.png "")
 
 Now let's add back in the best fitting stage:
 
@@ -122,6 +122,6 @@ y_values.append(fit_value-best_fit_value)
 This is the ratio of likelihoods chi(n). This since we're returning these values for x and y
 there is nothing extra needed to change to plot them.
  
-![image](https://github.com/H4rtland/masters/blob/master/week9/imgs/L_ratio_dist.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week09/imgs/L_ratio_dist.png "")
 
 My mistake, fit_value-best_fit_value *already is* ln(chi), not chi.

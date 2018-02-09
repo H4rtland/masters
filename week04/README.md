@@ -56,7 +56,7 @@ Based on the error message it's because ierflg is then used to pass by reference
 
 Well, in the end we get back the exact same plot that is produced by the C++ code.
 
-![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_example/output.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week04/cross_section_example/output.png "")
 
 ### Fitting actual data
 
@@ -70,7 +70,7 @@ are between 1 and 10 rather than 1000 to 10000, this is so that the initial fitt
 parameters used in the example still work. The error values are also changed, so that instead of
 a consistent 5% error, it uses sqrt(N) (where N is the number of events in a bin). 
 
-![image](https://github.com/H4rtland/masters/blob/master/week4/cross_section_data/output.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week04/cross_section_data/output.png "")
 
 FitMass.cpp is renamed to FitFunction.cpp and is stripped of everything except
 the MyMassSpectrum class which is needed for the Python code to work.

@@ -17,11 +17,11 @@ to use **3** rather than **3000** as the mean for a gaussian peak on top of the 
 
 In the process of getting this right, I produced about a million of these graphs
 
-![image](https://github.com/H4rtland/masters/blob/master/week8/imgs/output_qstar_bad.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week08/imgs/output_qstar_bad.png "")
 
 And after realising my mistake eventually ended up with one of these.
 
-![image](https://github.com/H4rtland/masters/blob/master/week8/imgs/output_qstar_good.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week08/imgs/output_qstar_good.png "")
 
 The gaussian peak is slightly mismatched on the higher energy tail, as the q\* distribution
 has more of a sharp falloff on this edge, rather than gauss-like.
@@ -208,7 +208,7 @@ as a batch process to run in parallel. For now, I'll try 100 trials and see wher
 
 By the way, this is what the fit looks like for 40000 events.
 
-![image](https://github.com/H4rtland/masters/blob/master/week8/imgs/output_qstar_40000.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week08/imgs/output_qstar_40000.png "")
 
 It's a smaller bump than what we were working with earlier. Also, this line is fairly useful to
 include now.

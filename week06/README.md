@@ -11,7 +11,7 @@ produce up to tens of events.
 
 Mathematically, the log of the likelihood, L, is given by this equation.
 
-![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/eqn1.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week06/imgs/eqn1.png "")
 
 This is the extended log-likelihood function.
 We want to *maximise* this value. Instead, we take the negative of this sum
@@ -58,7 +58,7 @@ The factor of two here is a correction to get the values of the errors
 in the parameters reported by Minuit right. The factor of 2 also appears
 in a similar fitting method, which produces a chi^2 for a poisson distributed n_i.
 
-![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/eqn2.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week06/imgs/eqn2.png "")
 
 This is not necessary to be used for fitting, but can be used to test the goodness
 of a fit in comparison to a regular chi^2 calculation. If it is used for fitting,
@@ -67,7 +67,7 @@ the parameters of the fit *are* different, closer to the values obtained from ch
 The final plot produced by the maximum log-likelihood method looks almost exactly the same
 as the plots from previous weeks (as you would hope).
 
-![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/log_likelihood_output.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week06/imgs/log_likelihood_output.png "")
 
 
 ### Plotting significance below distribution
@@ -108,7 +108,7 @@ hist_blackmax = nominal.Get("mjj_Scaled_BlackMax4000_1fb")
 hist.Add(hist_blackmax)
 ```
 
-![image](https://github.com/H4rtland/masters/blob/master/week6/imgs/blackmax_output.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week06/imgs/blackmax_output.png "")
 
 4 TeV is the lowest data set, meaning we are plotting on to the highest amount of background
 data, and yet the peak is still too high to be realistic. If a higher energy distribution were

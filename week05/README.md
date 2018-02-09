@@ -90,7 +90,7 @@ for i in range(0, nbins-1):
                 fits.data[i] += 1
 ```
 
-![image](https://github.com/H4rtland/masters/blob/master/week5/imgs/output_gauss.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week05/imgs/output_gauss.png "")
 
 I set the fitting function to exclude between 2 and 3 TeV, and clearly it is working
 as intended. It would be great if excited quarks / quantum black holes / etc. made
@@ -105,7 +105,7 @@ For generating a sample number of events for each bin, we can choose a random nu
 and select a number of events in a bin such that the integral of the poisson distribution up to
 that number of events gives an area equal to the random number.
 
-![image](https://github.com/H4rtland/masters/blob/master/week5/imgs/eqn1.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week05/imgs/eqn1.png "")
 
 To find k in this equation, we use the percent point function from scipy.  
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html
@@ -117,7 +117,7 @@ of course the mean (for large N).
 
 We do this for each bin, and can plot a generated distribution over the model, like so.
 
-![image](https://github.com/H4rtland/masters/blob/master/week5/distribution_generator/generated_dist.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week05/distribution_generator/generated_dist.png "")
 
 The black line in the above plot is NOT a fitted line, but the exact distribution predicted by the model.
 This happens to use parameter values obtained previously from actual fitting to actual data, but is not a
