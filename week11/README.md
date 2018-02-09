@@ -81,9 +81,12 @@ Where sys.argv[1] is the cluster/process argument passed all the way from the jo
 It could also be changed to take the number of iterations to run from the arguments as well.
 
 Now that I've tested submitting a single job with only 10 iterations of the 95% C.L limit test,
-let's scale up: 10 jobs running 250 iterations each.:
+let's scale up: 10 jobs running 250 iterations each:
 
 ```
+[thartland@lapa week11]$ condor_submit job.jdl 
+Submitting job(s)..........
+10 job(s) submitted to cluster 50599.
 [thartland@lapa week11]$ condor_q thartland
 
 
