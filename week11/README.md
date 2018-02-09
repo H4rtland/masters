@@ -9,7 +9,12 @@ level limits. Starting off with generating 300 limits and plotting a histogram, 
 ![image](https://github.com/H4rtland/masters/blob/master/week11/imgs/cl_dist_1.png "")
 
 We can clearly see the beginnings of a gaussian distribution here, but it still isn't very well
-defined. The problem now is the time factor. Just generating these 300 data points took this long
+defined. (Looking at this later on, I think I can say for sure that the spiky nature of this
+histogram is due to the likelihood loop increasing the number of events by 25 each time,
+and the histogram plotting with bin widths of 15, meaning that it's impossible for some bins
+to ever have data in).
+
+The problem now is the time factor. Just generating these 300 data points took this long
 
 ```
 real    12m55.262s
