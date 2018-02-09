@@ -174,4 +174,5 @@ Still, we do have 2268 lines of actual results, so I'll plot those before I go b
 
 ![image](https://github.com/H4rtland/masters/blob/master/week11/imgs/cl_dist_2.png "")
 
-This is much better!
+This is much better! Each job was only running 250 trials, which takes about 10 minutes, so there's
+still plenty of space to scale into, both for the number of trials per job and the number of jobs.
