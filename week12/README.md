@@ -51,3 +51,41 @@ by quite a way. The distribution now looks like this:
 
 This distribution was produced before making the changes in the above section, which is why
 there is still a massive spike at 2380.
+
+The mean of the dstribution is now at ~1200, whereas last week it was ~800. The backgrounds
+should be almost identical, so I'm not sure what's causing this.
+
+These are some samples of the histogram bin contents and the theoretical value I was calculating
+before (these are NOT the randomly generated values, those are based on these numbers)
+
+```
+hist:1033970.12239  mine:1016022.10606
+hist:863719.349551  mine:869095.677677
+hist:749091.2556    mine:744507.498295
+hist:630876.729938  mine:638683.13645
+hist:548767.728998  mine:548649.867284
+hist:473323.678317  mine:470927.486618
+........
+hist:91052.6108567  mine:92194.6314089
+hist:79596.9521148  mine:79718.0459191
+hist:69383.0570701  mine:68892.3441672
+hist:58658.4660953  mine:59601.8061133
+hist:51094.1180384  mine:51617.953889
+hist:44391.2921914  mine:44679.3038759
+........
+hist:10454.669244   mine:10501.3551099
+hist:9088.96027485  mine:9070.11858829
+hist:7858.29288964  mine:7830.75796039
+hist:6784.19914512  mine:6758.01662113
+hist:5863.79233368  mine:5829.88246811
+hist:5039.00987776  mine:5027.18662084
+```
+
+The values are close enough that I wouldn't think they could cause such a huge change in the
+95% limit distribution. Also neither side is always higher than the other, it seems to be random
+which is higher and which is lower, which I would think means that the limit shouldn't
+be skewed entirely in one direction by the change of data. Although at about the 10,000 events
+area, which is approximately where our peak is getting added on to, the Pythia data does seem to
+be slightly lower in most of the bins, which would mean that a given size peak would be
+comparatively less likely to be able to describe the data. Though surely this would move the limit
+down rather than up? Well, I'll keep going with these values for now and it'll probably be alright.
