@@ -40,7 +40,7 @@ output         = logs/std-$(CLUSTER).$(Process).out
 error          = logs/std-$(CLUSTER).$(Process).err
 log            = logs/std-$(CLUSTER).$(Process).log
 request_memory = 100
-concurrency_limits = myusername:100
+concurrency_limits = thartland:100
 queue 1
 ```
 
