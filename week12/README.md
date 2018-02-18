@@ -47,7 +47,7 @@ function using previously fitted parameters, I am now using the smooth Pythia ba
 one of the earlier weeks. However once I made this change the 95% limit shifted to the right
 by quite a way. The distribution now looks like this:
 
-![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/95pcCl_dist_51309.png "")
+![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/95pcCL_dist_51309.png "")
 
 This distribution was produced before making the changes in the above section, which is why
 there is still a massive spike at 2380.
