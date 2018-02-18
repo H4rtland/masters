@@ -52,8 +52,8 @@ by quite a way. The distribution now looks like this:
 This distribution was produced before making the changes in the above section, which is why
 there is still a massive spike at 2380.
 
-The mean of the dstribution is now at ~1200, whereas last week it was ~800. The backgrounds
-should be almost identical, so I'm not sure what's causing this.
+The mean of the dstribution now looks to be at ~1200, whereas last week it was ~800.
+The backgrounds should be almost identical, so I'm not sure what's causing this.
 
 These are some samples of the histogram bin contents and the theoretical value I was calculating
 before (these are NOT the randomly generated values, those are based on these numbers)
@@ -89,3 +89,44 @@ area, which is approximately where our peak is getting added on to, the Pythia d
 be slightly lower in most of the bins, which would mean that a given size peak would be
 comparatively less likely to be able to describe the data. Though surely this would move the limit
 down rather than up? Well, I'll keep going with these values for now and it'll probably be alright.
+
+With the fixes in place for the non converging fits, the mean of the distribution goes to almost
+exactly 1200, as I guessed earlier.
+
+![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/95pcCL_dist_51310.png "")
+
+This will do for now. Since the aim is to produce a brazil plot, we're now going to need to
+extend the batch system to also run jobs for q\* data at other masses. Ideally I'd like to have
+just one job to submit that then organises running the entire thing. I thought about separating
+by the different $(Process) numbers so that process 0 runs with one file, process 1 runs another,
+etc. If there were 5 files to test with, 10 jobs would use each of the files twice, so it would
+be separating by ID mod 5. But then I'm sure I'll run into some issues with this where
+I might want to only run one specific file.
+
+Ah, I've found what I need. I had looked at the Queue Arguments From syntax for htcondor jobs,
+but that would mean duplicating lines to run multiple of the same arguments.
+
+The best I'm going to get is something like this:
+
+```
+executable     = job_limit.sh
+universe       = vanilla
+arguments      = "$(CLUSTER) $(CLUSTER).$(Process) $(mass)"
+output         = logs/std-$(CLUSTER).$(Process).out
+error          = logs/std-$(CLUSTER).$(Process).err
+log            = logs/std-$(CLUSTER).$(Process).log
+request_memory = 100
+concurrency_limits = thartland:50
+
+
+mass = 1000
+queue 5
+
+... other masses ...
+
+mass = 7000
+queue 5
+```
+
+Which seems flexible enough for my needs. The mass is now passed as the third argument
+to each script. Results are also separated into subdirectories based on this value.
