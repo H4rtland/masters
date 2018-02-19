@@ -130,3 +130,27 @@ queue 5
 
 Which seems flexible enough for my needs. The mass is now passed as the third argument
 to each script. Results are also separated into subdirectories based on this value.
+
+Distributions at each mass point can be found in the directory plt51318 above.
+
+Starting with the distribution plotting code, I then modified it to create a brazil plot,
+which combines the means and root-mean-squares of each distribution into one plot.
+
+I had to battle with ROOT a bit to get it to plot what I want, but the turning point was
+finding the TMultiGraph class, which allowed me to draw the yellow and green bands of the brazil
+plot at the same time. Before that I either had the background of one plot drawing
+over the band on the other, or I ended up with a completely blank output.
+
+Then I added in the dotted line for the mean values, and fiddled around with the styling a bit,
+and finally arrived at the end result!
+
+![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/brazil-51318.png "")
+
+This is for a 95% confidence level limit distribution containing 2000 entries at each
+mass point. The mean and RMS of the limit of number of events is divided by 37000 to get
+the limit on the cross section in units of pb, as the data set is 37fb^-1. 
+
+For reference, the ATLAS q\* brazil plot looks like this.
+
+![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/atlas_qstar.png "")
+
