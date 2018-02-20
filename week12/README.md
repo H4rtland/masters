@@ -131,9 +131,11 @@ queue 5
 Which seems flexible enough for my needs. The mass is now passed as the third argument
 to each script. Results are also separated into subdirectories based on this value.
 
-Now all we need is a script that plots the distributions for the data at each mass point.
-This is plot_all.sh. With data generated for 2000 iterations at each mass point,
-the plotted distributions can be found in the directory plt51318 above.
+Now all we need is a script that plots the distributions for the sumulated
+peak data at each mass point. This script is called plot_all.sh, and all it does
+is call plot_limit_dist.py passing all the different mass results as arguments.
+With data generated for 2000 iterations at each mass point, the plotted
+distributions can be found in the directory plt51318 above.
 
 ### Brazil plots
 
@@ -158,3 +160,10 @@ For reference, the ATLAS q\* brazil plot looks like this.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week12/imgs/atlas_qstar.png "")
 
+It's the same! (Just about). At the weekly meeting tomorrow I'll check that I'm getting
+the size of the error bands right, because my lower yellow band looks like it's
+getting distorted by the log scale more than on the ATLAS plot.
+I should also be able to get the equation for the theoretical blue line,
+which I can then add to my plot.
+
+Results!
