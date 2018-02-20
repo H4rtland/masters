@@ -131,7 +131,9 @@ queue 5
 Which seems flexible enough for my needs. The mass is now passed as the third argument
 to each script. Results are also separated into subdirectories based on this value.
 
-Distributions at each mass point can be found in the directory plt51318 above.
+Now all we need is a script that plots the distributions for the data at each mass point.
+This is plot_all.sh. With data generated for 2000 iterations at each mass point,
+the plotted distributions can be found in the directory plt51318 above.
 
 ### Brazil plots
 
