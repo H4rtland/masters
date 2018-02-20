@@ -48,7 +48,7 @@ for mass_folder in os.listdir(base_path):
 brazil_data = sorted(brazil_data, key=itemgetter(0))
 brazil_data = [(x, m/37000, r/37000) for x, m, r in brazil_data]
 
-canvas = TCanvas("dist", "dist", 0, 0, 650, 450)
+canvas = TCanvas("dist", "dist", 0, 0, 500, 450)
 canvas.SetLogy(True)
 gPad.SetTicky(2)
 
