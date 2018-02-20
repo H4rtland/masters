@@ -133,6 +133,8 @@ to each script. Results are also separated into subdirectories based on this val
 
 Distributions at each mass point can be found in the directory plt51318 above.
 
+### Brazil plots
+
 Starting with the distribution plotting code, I then modified it to create a brazil plot,
 which combines the means and root-mean-squares of each distribution into one plot.
 
