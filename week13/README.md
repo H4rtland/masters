@@ -177,3 +177,16 @@ but to keep submitting 50 jobs at a time using almost a gigabyte of memory each.
 For comparison, I've asked Simon to run one job of his code to see if the pure c++ is
 any better. While checking that we discovered another single job running using 73Gb of memory
 all by itself, so I don't feel so bad any more.
+
+And, now that condor has refreshed the memory usage, Simon's job is using ~730mb of memory.
+So it's just ROOT.
+
+### Back to it
+
+Now that I have a higher resolution on the limit likelihood testing, and code to use this
+to get 1sigma and 2sigma upper and lower errors in the brazil plotting code, I can
+run on a new set of data and see what it looks like. All plots are included
+in directory plt51329 above. The brazil plot is also included here.
+
+![image](https://github.com/H4rtland/masters/blob/master/week13/imgs/brazil-51329.png "")
+
