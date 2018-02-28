@@ -219,10 +219,10 @@ Alright, that looks a lot better. I'll now check some of the other mass distribu
 
 3000 looks good.  
 4000 looks alright.  
-4500 has one value that looks a bit off `83.5 0.1632 0.15865`.
-5000 is the same `42.25 0.1636 0.15865`.
-5500 has the worst so far `28.75 0.1764 0.15865`.
-6000 is fine.
+4500 has one value that looks a bit off `83.5 0.1632 0.15865`.  
+5000 is the same `42.25 0.1636 0.15865`.  
+5500 has the worst so far `28.75 0.1764 0.15865`.  
+6000 is fine.  
 6500 is a bit off `16.85 0.1664 0.15865`.
 
 It's possible that I need to change the bin width values so that they get smaller earlier.
