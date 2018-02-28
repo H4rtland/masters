@@ -175,8 +175,8 @@ The conclusion is: I don't know where all this memory is going, and I don't have
 but to keep submitting 50 jobs at a time using almost a gigabyte of memory each.
 
 For comparison, I've asked Simon to run one job of his code to see if the pure c++ is
-any better. While checking that we discovered another single job running using 73Gb of memory
-all by itself, so I don't feel so bad any more.
+any better. While checking that we discovered someone else's single job running using
+73Gb of memory all by itself, so I don't feel so bad any more.
 
 And, now that condor has refreshed the memory usage, Simon's job is using ~730mb of memory.
 So it's just ROOT.
@@ -190,3 +190,42 @@ in directory plt51329 above. The brazil plot is also included here.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week13/imgs/brazil-51329.png "")
 
+Now I'm interested to find out how close the y values in the cumulative sum are to the
+actual values for one sigma, two sigma. I added some print statements to print out
+x values, y value pairs being iterated over ifthat pair was being used for one of
+the error values, and the particular sigma value at the end of the line to compare to.
+
+For the 7000 GeV distribution, the relevant lines are:
+
+```
+12.25 0.03      0.02275
+14.75 0.1872    0.15865
+23.75 0.8596    0.84135
+31.75 0.9776    0.97725
+```
+
+In particular that low 1sigma value is a couple of percent off.
+
+Oh, I'm binning in 0.5 steps instead of 0.05. I'll change that and run again.
+
+```
+11.85 0.024 0.02275
+14.25 0.1596 0.15865
+23.15 0.8436 0.84135
+31.55 0.9776 0.97725
+``` 
+
+Alright, that looks a lot better. I'll now check some of the other mass distributions.
+
+3000 looks good.  
+4000 looks alright.  
+4500 has one value that looks a bit off `83.5 0.1632 0.15865`.
+5000 is the same `42.25 0.1636 0.15865`.
+5500 has the worst so far `28.75 0.1764 0.15865`.
+6000 is fine.
+6500 is a bit off `16.85 0.1664 0.15865`.
+
+It's possible that I need to change the bin width values so that they get smaller earlier.
+It's also strange that all the problem values I found were the lower 1sigma band, but I suppose
+it's at that point that the size of each bin is the largest, so the cumulative distribution
+has the largest steps at this point.

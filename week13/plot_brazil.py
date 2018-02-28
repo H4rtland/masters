@@ -1,3 +1,5 @@
+from __future__ import print_function, division
+
 import sys
 import os
 import os.path as op
@@ -35,10 +37,10 @@ for mass_folder in os.listdir(base_path):
         binsize = 1
         bin_end = 1000
     if mass >= 5000:
-        binsize = 0.5
+        binsize = 0.05
         bin_end = 500
     if mass >= 6000:
-        binsize = 0.5
+        binsize = 0.05
         bin_end = 250
     
     bins = int(bin_end/binsize)
@@ -72,17 +74,26 @@ for mass_folder in os.listdir(base_path):
         cumulative.append(current_sum)
         current_sum += content
     cumulative.append(current_sum)
+    binsize = 1
     cumulative = [c/max(cumulative) for c in cumulative]
-    
+    m = None
     for x, y in zip(bin_locations, cumulative):
         if y >= two_sigma/2 and low_2sigma is None:
             low_2sigma = abs(x-mean)
+            if mass == m:
+                print(x, y, two_sigma/2)
         if y >= one_sigma/2 and low_1sigma is None:
             low_1sigma = abs(x-mean)
+            if mass == m:
+                print(x, y, one_sigma/2)
         if y >= 1-(one_sigma/2) and high_1sigma is None:
             high_1sigma = abs(x-mean)
+            if mass == m:
+                print(x, y, 1-one_sigma/2)
         if y >= 1-(two_sigma/2) and high_2sigma is None:
             high_2sigma = abs(x-mean)
+            if mass == m:
+                print(x, y, 1-two_sigma/2)
 
 
     brazil_data.append((mass, mean, rms, low_2sigma, low_1sigma, high_1sigma, high_2sigma))
