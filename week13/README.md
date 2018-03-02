@@ -241,3 +241,8 @@ are written to a single file. This file is then read and the data points are add
 brazil plot by plot_brazil.py.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week13/imgs/brazil-51329-2.png "")
+
+The data line on my plot follows exactly the path of the data line on the ATLAS plot.
+Now the only difference is that the cross section limit of my simulated data is slightly too low,
+because I am not yet including any of the additional uncertainties. But would this also change
+the data line?
