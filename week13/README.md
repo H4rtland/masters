@@ -229,3 +229,15 @@ It's possible that I need to change the bin width values so that they get smalle
 It's also strange that all the problem values I found were the lower 1sigma band, but I suppose
 it's at that point that the size of each bin is the largest, so the cumulative distribution
 has the largest steps at this point.
+
+### The black line
+
+The solid black line on the ATLAS plot represents the 95% likelihood cross section limit
+at each mass point. To duplicate this myself I copied limit_dist.py as a new file limit_dist_data.py.
+I changed things around in this file to use the actual ATLAS data file as the distribution
+background rather than a distribution randomly generated from the Pythia data. Then the
+likelihood calculation is ran at each mass point for 0 injected events, and the results
+are written to a single file. This file is then read and the data points are added to the
+brazil plot by plot_brazil.py.
+
+![image](https://github.com/H4rtland/masters/blob/master/week13/imgs/brazil-51329-2.png "")
