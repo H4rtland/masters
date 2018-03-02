@@ -140,11 +140,27 @@ mg.GetXaxis().SetTitle("Mass (GeV)")
 mg.GetYaxis().SetTitle("#sigma #times A #times BR [pb]")
 mg.GetYaxis().SetRangeUser(1e-4, 4)
 
-
 brazil_line = TGraph(len(brazil_data), x, mean)
 brazil_line.SetLineStyle(7)
 brazil_line.SetLineColor(1)
 brazil_line.Draw("same")
+
+data_mass_limit_pairs = []
+with open("results/data_cl_dist.txt", "r") as data_file:
+    for line in data_file.readlines():
+        data_mass_limit_pairs.append(tuple(map(float, line.split(":"))))
+
+data_x, data_y = zip(*sorted(data_mass_limit_pairs, key=itemgetter(0)))
+data_y = [dy/37000 for dy in data_y]
+data_line = TGraph(len(data_x), array("d", data_x), array("d", data_y))
+data_line.SetLineStyle(1)
+data_line.SetLineColor(1)
+data_line.SetLineWidth(2)
+data_line.SetMarkerStyle(8)
+data_line.SetMarkerSize(0.75)
+data_line.SetMarkerColor(1)
+data_line.Draw("samePL")
+
 
 theory_x = [xval for xval in range(2000, 7001, 500)]
 theory_y = []
