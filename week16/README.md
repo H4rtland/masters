@@ -41,5 +41,19 @@ faster after changing the parameters, and I am now sure that they work for the n
 
 ![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/plot-abc1.i1-2000-hist.png "")
 
+I have also slightly changed the events step based on the mass, to account for the limit
+distribution peaks being further to the right and slightly wider. The new conditions are
 
+```
+default   --> step = 5
+M >= 4000 --> step = 1
+M >= 5000 --> step = 0.2
+M >= 6000 --> step = 0.1
+M >= 6500 --> step = 0.05
+```
+
+While making these changes I was checking the typical limits for each q\* mass and also
+keeping an eye on how long each iteration was taking. I have added in some code to write out
+to a file how long each iteration takes along with what the limit was for that, and I will
+see if there is anything interesting in that data after I have run all the batch jobs.
 
