@@ -67,10 +67,11 @@ of how well the fitting stage performs. Why the times are *so* grouped up, I'm n
 The limits are distributed as a gaussian as we have already seen, so they are unlikely to
 be causing grouping like this for the iteration times (although they may be the cause of the
 approximately gaussian shape around each of the peaks in the time distributions).
+
 Only the loops where a limit was found sucessfully are included in these histograms,
 so the separation is not due to some "error"/"no error" difference. Following the path through
 the code that produces an actual value for a limit, there are no code branches that would
-make some loops take longer, i.e if some loops had their data plotted (this is currently disabled).
+make some loops take longer, i.e if some loops were generating plots (this is currently disabled).
 I'll see if there are any parameters I can get out of TMinuit that I might be able to link to
 the data we're seeing here.
 
