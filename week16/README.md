@@ -54,6 +54,23 @@ M >= 6500 --> step = 0.05
 
 While making these changes I was checking the typical limits for each q\* mass and also
 keeping an eye on how long each iteration was taking. I have added in some code to write out
-to a file how long each iteration takes along with what the limit was for that, and I will
+to a file how long each iteration takes along with what the limit was for that loop, and I will
 see if there is anything interesting in that data after I have run all the batch jobs.
+
+First: the per-iteration time data. 
+
+![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/times.png "")
+
+Each histogram plots iteration time on the x axis and frequency on the y axis.
+There is some kind of clear separation going on here, which I think is probably a result
+of how well the fitting stage performs. Why the times are *so* grouped up, I'm not sure.
+The limits are distributed as a gaussian as we have already seen, so they are unlikely to
+be causing grouping like this for the iteration times (although they may be the cause of the
+approximately gaussian shape around each of the peaks in the time distributions).
+Only the loops where a limit was found sucessfully are included in these histograms,
+so the separation is not due to some "error"/"no error" difference. Following the path through
+the code that produces an actual value for a limit, there are no code branches that would
+make some loops take longer, i.e if some loops had their data plotted (this is currently disabled).
+I'll see if there are any parameters I can get out of TMinuit that I might be able to link to
+the data we're seeing here.
 
