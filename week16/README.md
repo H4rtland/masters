@@ -76,7 +76,8 @@ make some loops take significantly longer, i.e if some loops were generating plo
 that I might be able to link to the data we're seeing here.
 
 Second item on the agenda was the data I had generated at the same time as the time plots.
-I didn't actually do anything with that data and instead I have a more recent set to work with.
+I didn't actually do anything with that data and instead I have a more recently
+generated set to work with.
 
 I changed the code around so that I could run it for the different q\* / QBH / WPrime
 simulated peaks just by changing the job file. These are now job_qstar.jdl, job_qbh.jdl and
@@ -88,7 +89,7 @@ to get it to work, but every time the intersection point was offset to the right
 should have been. Then on Sunday night while doing some completely unrelated work I glanced
 at the piece of paper I had rearranged the straight line equations on the find the intersect,
 and had a sudden realisation of "they're only straight lines on the log plot!". So I've now
-fixed that.
+fixed that by logging the values first and then exping to revert to the actual y-intersect.
 
 And so, here are the brazil plots for excited quarks, quantum black holes and W primes,
 using the newer, larger data set:
