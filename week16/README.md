@@ -105,3 +105,19 @@ simply lines I have drawn on between the points. The points are all that the dat
 actually gives us, and there is no real reason that there should be straight lines joining
 them. It's probably a good enough approximation though, and certainly I don't want to
 have to code anything more complex that what I have already.
+
+There's still a slight problem in that I ran the code for a 37+32 fb^-1 data set, and actually
+the data is more like 37+42 fb^-1. I'll probably need to re-do these brazil plots with the
+background scaled to the higher value some time in the future, but for now these are fairly
+accurate. It's just that the green/yellow bands might be slightly vertically offset from
+where they should be, but not by too much. The black data line should be fine, so the
+lower mass limits should be good to use.
+
+Next I just need to change the new/old comparison to narrow the focus down to the low mass
+end to get a better look at how the data has changed.
+
+![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/data_cmp_2.png "")
+
+The trend seems to be alright for the very left most bins, so there should not be
+too much of a problem fitting them. There are two bins that drop down noticably below the
+trend, but there isn't anything I can do about that really. 
