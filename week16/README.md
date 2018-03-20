@@ -61,7 +61,7 @@ First: the per-iteration time data.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/times.png "")
 
-Each histogram plots iteration time on the x axis and frequency on the y axis.
+Each histogram plots iteration time (in seconds) on the x axis and frequency on the y axis.
 There is some kind of clear separation going on here, which I think is probably a result
 of how well the fitting stage performs. Why the times are *so* grouped up, I'm not sure.
 The limits are distributed as a gaussian as we have already seen, so they are unlikely to
@@ -71,7 +71,36 @@ approximately gaussian shape around each of the peaks in the time distributions)
 Only the loops where a limit was found sucessfully are included in these histograms,
 so the separation is not due to some "error"/"no error" difference. Following the path through
 the code that produces an actual value for a limit, there are no code branches that would
-make some loops take longer, i.e if some loops were generating plots (this is currently disabled).
-I'll see if there are any parameters I can get out of TMinuit that I might be able to link to
-the data we're seeing here.
+make some loops take significantly longer, i.e if some loops were generating plots
+(this is currently disabled). I'll see if there are any parameters I can get out of TMinuit
+that I might be able to link to the data we're seeing here.
 
+Second item on the agenda was the data I had generated at the same time as the time plots.
+I didn't actually do anything with that data and instead I have a more recent set to work with.
+
+I changed the code around so that I could run it for the different q\* / QBH / WPrime
+simulated peaks just by changing the job file. These are now job_qstar.jdl, job_qbh.jdl and
+job_wprime.jdl.
+
+I have also added some lines to the brazil plot code to calculate the intersection of the
+black data line and the blue theory line. I started this last Friday and spent an hour trying
+to get it to work, but every time the intersection point was offset to the right of where it
+should have been. Then on Sunday night while doing some completely unrelated work I glanced
+at the piece of paper I had rearranged the straight line equations on the find the intersect,
+and had a sudden realisation of "they're only straight lines on the log plot!". So I've now
+fixed that.
+
+And so, here are the brazil plots for excited quarks, quantum black holes and W primes,
+using the newer, larger data set:
+
+![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/brazil-55841.png "")
+
+![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/brazil-55842.png "")
+
+![image](https://github.com/H4rtland/masters/blob/master/week16/imgs/brazil-55843.png "")
+
+I do have some doubts about how exactly the intersect should work. The straight lines are
+simply lines I have drawn on between the points. The points are all that the data
+actually gives us, and there is no real reason that there should be straight lines joining
+them. It's probably a good enough approximation though, and certainly I don't want to
+have to code anything more complex that what I have already.
