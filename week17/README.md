@@ -26,6 +26,23 @@ proper legends / other decoration.
 
 ![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-55841.png "")
 
+Observed mass limit: 6731 GeV  
+Observed cross section limit: 0.0003286 pb  
+Expected mass limit: 6549 GeV  
+Expected cross section limit: 0.0004807 pb  
+
 ![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-55842.png "")
 
+Observed mass limit: 9161 GeV  
+Observed cross section limit: 5.726e-05 pb  
+Expected mass limit: 9152 GeV  
+Expected cross section limit: 5.892e-05 pb  
+
 ![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-55843.png "")
+
+Observed mass limit: 3843 GeV  
+Observed cross section limit: 0.007612 pb  
+Expected mass limit: 4030 GeV  
+Expected cross section limit: 0.005265 pb  
+
+These will need to be updated after I switch back to using 2016 data only.
