@@ -46,3 +46,36 @@ Expected mass limit: 4030 GeV
 Expected cross section limit: 0.005265 pb  
 
 These will need to be updated after I switch back to using 2016 data only.
+
+Well I set the new jobs to run yesterday, and some of the highest mass ones are still running
+almost 24 hours later. When I check the logs files, I see that most of the loops
+are still only taking ~3-4 seconds, however some of them are taking much longer.
+
+```
+1732   FUNCTION VALUE DOES NOT SEEM TO DEPEND ON ANY OF THE 4 VARIABLE PARAMETERS.
+1733           VERIFY THAT STEP SIZES ARE BIG ENOUGH AND CHECK FCN LOGIC.
+1734  *******************************************************************************
+1735  *******************************************************************************
+1736   FUNCTION VALUE DOES NOT SEEM TO DEPEND ON ANY OF THE 4 VARIABLE PARAMETERS.
+1737           VERIFY THAT STEP SIZES ARE BIG ENOUGH AND CHECK FCN LOGIC.
+1738  *******************************************************************************
+1739  *******************************************************************************
+1740   FUNCTION VALUE DOES NOT SEEM TO DEPEND ON ANY OF THE 4 VARIABLE PARAMETERS.
+1741           VERIFY THAT STEP SIZES ARE BIG ENOUGH AND CHECK FCN LOGIC.
+1742  *******************************************************************************
+1743  *******************************************************************************
+1744 Iteration 61637.50.i740 max(ycumulative)=0
+1745 Iteration 740, limit = None, time = 17431.82
+```
+
+Yep, that's almost 5 hours on a single loop. Most of the loops that get this big error message
+fail quickly, only taking 1-2 seconds, but there are just a few that are taking hours.
+I assume that most of the time is taken up by the root fitting, so I'm not sure if there's
+any way that I can intervene halfway through once it's clearly going to take longer than usual.
+
+In the limit_dist.py I copied for the W\* data I changed the default fitting parameters to account
+for the change back to 37fb^-1 of data, but I forgot to in the file for q\* / QBH / W', so that
+might be the reason. I'll run the whole thing again now I've changed those parameters back
+and see if this keeps happening. I'll cancel the currently running jobs as well.
+
+
