@@ -103,3 +103,12 @@ And so, these are the new brazil plots for 37fb^-1.
 ![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61673.png "")
 
 ![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61674.png "")
+
+The q\* plot seems to have changed slightly compared to the week 13 version, but since
+I've been having so much trouble getting the code to even run I don't want to risk
+breaking it further trying to get back to what I had then. And I am slightly concerned about
+the shape of the 2000 and 2500 GeV distributions in plt61672. The 2000 is zeroed at a big chunk of
+masses near 2400 GeV, and the 2500 GeV and 3500 GeV distributions have a big peak at the left
+that doesn't exist in the 3000 GeV distribution. I wouldn't be surprised if this is what was
+contributing to the odd shape I have on the left of my q\* brazil plot where it isn't very smooth.
+This irregularity has existed since week 13, now that I look back at it though. 
