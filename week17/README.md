@@ -87,3 +87,19 @@ Alright, without me really doing anything, everything has just fixed itself. I'l
 test for the 7000 GeV mass q\* to check that it is in fact working and I wasn't just lucky
 for the 50 iterations I ran. But compared to earlier where it was crashing by the first couple
 of iterations, this is an improvement.
+
+That didn't fix it, but I think I have fixed it now. I made some changes including switching
+some of the python math.log calls for TMath.Log calls. This fixed at least one error I was
+getting (although I don't think it was causing the mass failures). I also separated the first
+fitting stage into two, two fit the first two parameters separately, and set some bounding
+values for the first parameter. Things seem to be going smoothly now, and I've got generated
+limits for all three particles. I'm not including W\* yet because I don't have compatible
+peaks/backgrounds still.
+
+And so, these are the new brazil plots for 37fb^-1.
+
+![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61672.png "")
+
+![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61673.png "")
+
+![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61674.png "")
