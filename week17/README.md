@@ -78,4 +78,12 @@ for the change back to 37fb^-1 of data, but I forgot to in the file for q\* / QB
 might be the reason. I'll run the whole thing again now I've changed those parameters back
 and see if this keeps happening. I'll cancel the currently running jobs as well.
 
+Ok, turns out I had changed back the default parameters and I was looking at the wrong file earlier.
+In the many hours since then all I've managed to do is make things worse. I still can't get the
+fitting at 7000 GeV to work all of the time, and half of the time at 3000 GeV the fit fails to
+converge. This *never* used to happen. Oh, looks like I've fixed that actually.
 
+Alright, without me really doing anything, everything has just fixed itself. I'll now run a longer
+test for the 7000 GeV mass q\* to check that it is in fact working and I wasn't just lucky
+for the 50 iterations I ran. But compared to earlier where it was crashing by the first couple
+of iterations, this is an improvement.
