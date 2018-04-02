@@ -16,10 +16,10 @@ gROOT.SetBatch(True)
 #gStyle.SetLegendBorderSize(0)
 #gStyle.SetLegendFillStyle(0);
 
-canvas = TCanvas("pythia", "pythia", 0, 0, 600, 500)
+canvas = TCanvas("pythia", "pythia", 0, 0, 600, 450)
 canvas.SetLogy(True)
-canvas.SetBottomMargin(0.13)
-canvas.SetLeftMargin(0.13)
+canvas.SetBottomMargin(0.11)
+canvas.SetLeftMargin(0.11)
 canvas.SetTopMargin(0.05)
 canvas.SetRightMargin(0.05)
 #ROOT.IABstyles.canvas_style(canvas, 0.25, 0.05, 0.02, 0.15, 0, 0)
@@ -30,9 +30,13 @@ pythia_hist = pythia_file.Get("mjj_mc15_13TeV_361023_Pythia8EvtGen_A14NNPDF23LO_
 pythia_hist.GetYaxis().SetTitle("Events")
 pythia_hist.GetYaxis().SetTitleSize(0.04)
 pythia_hist.GetYaxis().SetLabelSize(0.035)
+pythia_hist.GetYaxis().SetNdivisions(508)
 
 pythia_hist.GetXaxis().SetTitleSize(0.04)
 pythia_hist.GetXaxis().SetLabelSize(0.035)
+
+pythia_hist.GetXaxis().SetTitleOffset(1.05)
+pythia_hist.GetYaxis().SetTitleOffset(1.05)
 
 
 #ROOT.IABstyles.h1_style(pythia_hist, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
