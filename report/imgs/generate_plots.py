@@ -67,36 +67,40 @@ canvas.SaveAs("pythia_background.pdf")
 ##################################################################################################################
 ##################################################################################################################
 
+def generate_peak(name, infile, object, outfile, limits):
+    canvas2 = TCanvas("peak_{0}".format(outfile), "peaki_{0}".format(outfile), 0, 0, 600, 450)
+    #canvas2.SetLogy(True)
+    canvas2.SetBottomMargin(0.11)
+    canvas2.SetLeftMargin(0.11)
+    canvas2.SetTopMargin(0.05)
+    canvas2.SetRightMargin(0.05)
 
-canvas2 = TCanvas("peak", "peak", 0, 0, 600, 450)
-#canvas2.SetLogy(True)
-canvas2.SetBottomMargin(0.11)
-canvas2.SetLeftMargin(0.11)
-canvas2.SetTopMargin(0.05)
-canvas2.SetRightMargin(0.05)
+    peak_file = TFile.Open("Fourth_Year_Data/{0}".format(infile))
+    nominal = peak_file.GetDirectory("Nominal")
+    peak_hist = nominal.Get("{0}".format(object))
 
-peak_file = TFile.Open("Fourth_Year_Data/QStar/dataLikeHistograms.QStar3000.root")
-nominal = peak_file.GetDirectory("Nominal")
-peak_hist = nominal.Get("mjj_Scaled_QStar3000_30fb")
+    peak_hist.SetTitle("")
 
-peak_hist.SetTitle("")
+    peak_hist.GetYaxis().SetTitle("{0} Events".format(name))
+    peak_hist.GetYaxis().SetTitleSize(0.04)
+    peak_hist.GetYaxis().SetLabelSize(0.035)
+    #peak_hist .GetYaxis().SetNdivisions(508)
 
-peak_hist.GetYaxis().SetTitle("q* Events")
-peak_hist.GetYaxis().SetTitleSize(0.04)
-peak_hist.GetYaxis().SetLabelSize(0.035)
-#peak_hist .GetYaxis().SetNdivisions(508)
+    peak_hist.GetXaxis().SetTitleSize(0.04)
+    peak_hist.GetXaxis().SetLabelSize(0.035)
+    peak_hist.GetXaxis().SetRangeUser(*limits)
 
-peak_hist.GetXaxis().SetTitleSize(0.04)
-peak_hist.GetXaxis().SetLabelSize(0.035)
-peak_hist.GetXaxis().SetRangeUser(0, 6000)
+    peak_hist.GetXaxis().SetTitleOffset(1.05)
+    peak_hist.GetYaxis().SetTitleOffset(1.2)
 
-peak_hist.GetXaxis().SetTitleOffset(1.05)
-peak_hist.GetYaxis().SetTitleOffset(1.2)
+    peak_hist.Draw()
 
-peak_hist.Draw()
+    canvas2.SaveAs("{0}.png".format(outfile))
+    canvas2.SaveAs("{0}.pdf".format(outfile))
 
-canvas2.SaveAs("peak_qstar_3000.png")
-canvas2.SaveAs("peak_qstar_3000.pdf")
+generate_peak("q*", "QStar/dataLikeHistograms.QStar3000.root", "mjj_Scaled_QStar3000_30fb", "peak_qstar_3000", (0, 6000))
+generate_peak("QBH", "BlackMax/dataLikeHistograms.BlackMax5000.root", "mjj_Scaled_BlackMax5000_30fb", "peak_qbh_5000", (0, 10000))
+generate_peak("W'", "WPrime/dataLikeHistograms.WPrime3000.root", "mjj_Scaled_WPrime3000_30fb", "peak_wprime_3000", (0, 6000))
 
 """canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
