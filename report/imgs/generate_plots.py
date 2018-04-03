@@ -39,8 +39,6 @@ pythia_hist.GetXaxis().SetTitleOffset(1.05)
 pythia_hist.GetYaxis().SetTitleOffset(1.05)
 
 
-#ROOT.IABstyles.h1_style(pythia_hist, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
-
 nbins = pythia_hist.GetNbinsX()
 xmiddles = [pythia_hist.GetBinCenter(b) for b in range(1, nbins+1)]
 data = [pythia_hist.GetBinContent(b) for b in range(1, nbins+1)]
@@ -63,6 +61,42 @@ gr.Draw("P")
 
 canvas.SaveAs("pythia_background.png")
 canvas.SaveAs("pythia_background.pdf")
+
+
+##################################################################################################################
+##################################################################################################################
+##################################################################################################################
+
+
+canvas2 = TCanvas("peak", "peak", 0, 0, 600, 450)
+#canvas2.SetLogy(True)
+canvas2.SetBottomMargin(0.11)
+canvas2.SetLeftMargin(0.11)
+canvas2.SetTopMargin(0.05)
+canvas2.SetRightMargin(0.05)
+
+peak_file = TFile.Open("Fourth_Year_Data/QStar/dataLikeHistograms.QStar3000.root")
+nominal = peak_file.GetDirectory("Nominal")
+peak_hist = nominal.Get("mjj_Scaled_QStar3000_30fb")
+
+peak_hist.SetTitle("")
+
+peak_hist.GetYaxis().SetTitle("q* Events")
+peak_hist.GetYaxis().SetTitleSize(0.04)
+peak_hist.GetYaxis().SetLabelSize(0.035)
+#peak_hist .GetYaxis().SetNdivisions(508)
+
+peak_hist.GetXaxis().SetTitleSize(0.04)
+peak_hist.GetXaxis().SetLabelSize(0.035)
+peak_hist.GetXaxis().SetRangeUser(0, 6000)
+
+peak_hist.GetXaxis().SetTitleOffset(1.05)
+peak_hist.GetYaxis().SetTitleOffset(1.2)
+
+peak_hist.Draw()
+
+canvas2.SaveAs("peak_qstar_3000.png")
+canvas2.SaveAs("peak_qstar_3000.pdf")
 
 """canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
