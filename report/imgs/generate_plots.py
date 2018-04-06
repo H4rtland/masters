@@ -70,8 +70,8 @@ canvas.SaveAs("pythia_background.pdf")
 def generate_peak(name, infile, object, outfile, limits):
     canvas2 = TCanvas("peak_{0}".format(outfile), "peaki_{0}".format(outfile), 0, 0, 600, 450)
     #canvas2.SetLogy(True)
-    canvas2.SetBottomMargin(0.11)
-    canvas2.SetLeftMargin(0.11)
+    canvas2.SetBottomMargin(0.13)
+    canvas2.SetLeftMargin(0.13)
     canvas2.SetTopMargin(0.05)
     canvas2.SetRightMargin(0.05)
 
@@ -82,12 +82,12 @@ def generate_peak(name, infile, object, outfile, limits):
     peak_hist.SetTitle("")
 
     peak_hist.GetYaxis().SetTitle("{0} Events".format(name))
-    peak_hist.GetYaxis().SetTitleSize(0.04)
-    peak_hist.GetYaxis().SetLabelSize(0.035)
+    peak_hist.GetYaxis().SetTitleSize(0.05)
+    peak_hist.GetYaxis().SetLabelSize(0.04)
     #peak_hist .GetYaxis().SetNdivisions(508)
 
-    peak_hist.GetXaxis().SetTitleSize(0.04)
-    peak_hist.GetXaxis().SetLabelSize(0.035)
+    peak_hist.GetXaxis().SetTitleSize(0.05)
+    peak_hist.GetXaxis().SetLabelSize(0.04)
     peak_hist.GetXaxis().SetRangeUser(*limits)
 
     peak_hist.GetXaxis().SetTitleOffset(1.05)
@@ -101,6 +101,32 @@ def generate_peak(name, infile, object, outfile, limits):
 generate_peak("q*", "QStar/dataLikeHistograms.QStar3000.root", "mjj_Scaled_QStar3000_30fb", "peak_qstar_3000", (0, 6000))
 generate_peak("QBH", "BlackMax/dataLikeHistograms.BlackMax5000.root", "mjj_Scaled_BlackMax5000_30fb", "peak_qbh_5000", (0, 10000))
 generate_peak("W'", "WPrime/dataLikeHistograms.WPrime3000.root", "mjj_Scaled_WPrime3000_30fb", "peak_wprime_3000", (0, 6000))
+
+
+canvas3 = TCanvas("data", "data", 0, 0, 600, 450)
+canvas3.SetBottomMargin(0.13)
+canvas3.SetLeftMargin(0.11)
+canvas3.SetTopMargin(0.05)
+canvas3.SetRightMargin(0.05)
+canvas3.SetLogy(True)
+
+data_file = TFile.Open("Fourth_Year_Data/mjj_data15_13TeV_00276262_physics_Main_total_final.root")
+data_hist = data_file.Get("mjj_data15_13TeV_00276262_physics_Main_total_final")
+
+data_hist.SetTitle("")
+
+data_hist.GetXaxis().SetTitleOffset(1.05)
+
+data_hist.GetXaxis().SetRangeUser(0, 9000)
+data_hist.GetXaxis().SetNdivisions(505)
+
+data_hist.GetYaxis().SetTitle("Events")
+data_hist.GetYaxis().SetTitleOffset(1.05)
+
+data_hist.Draw()
+
+canvas3.SaveAs("data_background.pdf")
+canvas3.SaveAs("data_background.png")
 
 """canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
