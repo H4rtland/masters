@@ -1,0 +1,17 @@
+executable     = job_limit_wstar.sh
+universe       = vanilla
+arguments      = "$(CLUSTER) $(CLUSTER).$(Process) $(mass) $(Process) $(desc) $(sim_file) $(sim_hist)"
+output         = logs/std-$(CLUSTER).$(Process).out
+error          = logs/std-$(CLUSTER).$(Process).err
+log            = logs/std-$(CLUSTER).$(Process).log
+request_memory = 100
+concurrency_limits = thartland:20
+
+
+sim_file = 'data/dataLikeHistograms.WStar{0}.root'
+sim_hist = 'mjj_Scaled_WStar{0}_30fb'
+desc = 'W star 95% CL limit brazil plot,wstar'
+
+mass = 2000
+queue 1
+

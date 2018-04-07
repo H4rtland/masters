@@ -1,0 +1,12 @@
+python plot_limit_dist.py results/$1/4000/*
+python plot_limit_dist.py results/$1/5000/*
+python plot_limit_dist.py results/$1/5500/*
+python plot_limit_dist.py results/$1/6000/*
+python plot_limit_dist.py results/$1/6500/*
+python plot_limit_dist.py results/$1/7000/*
+python plot_limit_dist.py results/$1/7500/*
+python plot_limit_dist.py results/$1/8000/*
+python plot_limit_dist.py results/$1/8500/*
+python plot_limit_dist.py results/$1/9000/*
+python plot_limit_dist.py results/$1/9500/*
+python plot_limit_dist.py results/$1/10000/*

@@ -1,0 +1,48 @@
+executable     = job_limit.sh
+universe       = vanilla
+arguments      = "$(CLUSTER) $(CLUSTER).$(Process) $(mass) $(Process) $(desc) $(sim_file) $(sim_hist)"
+output         = logs/std-$(CLUSTER).$(Process).out
+error          = logs/std-$(CLUSTER).$(Process).err
+log            = logs/std-$(CLUSTER).$(Process).log
+request_memory = 100
+concurrency_limits = thartland:18
+
+sim_file = 'data/dataLikeHistograms.BlackMax{0}.root'
+sim_hist = 'mjj_Scaled_BlackMax{0}_30fb'
+desc = 'QBH 95% CL limit brazil plot,qbh'
+
+mass = 4000
+queue 5
+
+mass = 5000
+queue 5
+
+mass = 5500
+queue 5
+
+mass = 6000
+queue 5
+
+mass = 6500
+queue 5
+
+mass = 7000
+queue 5
+
+mass = 7500
+queue 5
+
+mass = 8000
+queue 5
+
+mass = 8500
+queue 5
+
+mass = 9000
+queue 5
+
+mass = 9500
+queue 5
+
+mass = 10000
+queue 5
