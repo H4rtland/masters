@@ -235,3 +235,10 @@ Mass    Mean    low2s   low1s   high1s  high2s
 I expected that the high 1sigma and 2sigma would move up compared to the no uncertainty case.
 Because the distribution should be smeared out, and there are more limits that can move
 up than there are that can move down over at the high mass end.
+
+Also while I'm editing this file I'll include an update for the W' brazil plot. In the one
+I have above it turned out that I was using an old data line which included the 2017 data,
+which is why it is so far off the expected line. This is the new one:
+
+![image](https://github.com/H4rtland/masters/blob/master/week17/imgs/brazil-61674-2.png "")
+
