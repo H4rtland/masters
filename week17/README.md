@@ -210,7 +210,7 @@ Lim  Luminosity    37*Lim/Luminosity
 22.9 36.0256170587 23.5193750775
 ```
 
-Notice that the 36.818 comes back on the 6th line. That's 6000 limits apart, but it's still
+Notice that the 36.818 comes back on the 6th line. That's 5000 limits apart, but it's still
 a repetition.
 
 Changing from using the TRandom class to TRandom1 has fixed the repetition issue. However,
