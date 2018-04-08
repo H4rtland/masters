@@ -188,7 +188,7 @@ Mass    Mean    low2s   low1s   high1s  high2s
 7000    20.53   12.48   15.28   25.77   34.33
 ```
 
-On disturbing thing I was was that when I printed out the randomly generated luminosity for
+On disturbing thing I noticed was that when I printed out the randomly generated luminosity for
 every 1000th limits, I saw repetitions.
 
 ```
