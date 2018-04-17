@@ -213,7 +213,7 @@ mg.Draw("a3")
 
 yaxistitle = "#sigma #times A #times BR [pb]"
 if particle == "qbh":
-    yaxistitle = "#sigma #timess #A [pb]"
+    yaxistitle = "#sigma #times A [pb]"
 
 mg.GetXaxis().SetTitle("m_{%s} [GeV]" % particle_symbol)
 mg.GetYaxis().SetTitle(yaxistitle)
