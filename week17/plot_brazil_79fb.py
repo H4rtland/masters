@@ -173,8 +173,11 @@ brazil_data = [(x, m/fb2, r/fb2, a/fb2, b/fb2, c/fb2, d/fb2) for x, m, r, a, b, 
 
 canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
-#canvas.SetLeftMargin(0.15)
-gPad.SetTicky(2)
+canvas.SetLeftMargin(0.12)
+canvas.SetRightMargin(0.05)
+canvas.SetBottomMargin(0.12)
+canvas.SetTopMargin(0.05)
+gPad.SetTicky(1)
 gPad.SetTickx(1)
 
 
@@ -212,21 +215,27 @@ mg.Draw("a3")
 
 yaxistitle = "#sigma #times A #times BR [pb]"
 if particle == "qbh":
-    yaxistitle = "#sigma #timess #A [pb]"
+    yaxistitle = "#sigma #times A [pb]"
 
 mg.GetXaxis().SetTitle("m_{%s} [GeV]" % particle_symbol)
 mg.GetYaxis().SetTitle(yaxistitle)
 mg.GetYaxis().SetRangeUser(*y_limits)
-mg.GetYaxis().SetTitleOffset(1.35)
-mg.GetXaxis().SetTitleOffset(1.2)
+mg.GetYaxis().SetTitleOffset(1.2)
+
+mg.GetXaxis().SetTitleOffset(1.15)
 mg.GetXaxis().SetNdivisions(508)
+mg.GetXaxis().SetLabelSize(0.05)
+mg.GetXaxis().SetTitleSize(0.05)
+
+mg.GetYaxis().SetLabelSize(0.05)
+mg.GetYaxis().SetTitleSize(0.05)
 
 brazil_line = TGraph(len(brazil_data), x, mean)
 brazil_line.SetLineStyle(7)
 brazil_line.SetLineColor(1)
 brazil_line.Draw("same")
 
-data_mass_limit_pairs = []
+"""data_mass_limit_pairs = []
 with open(data_cl_file, "r") as data_file:
     for line in data_file.readlines():
         data_mass_limit_pairs.append(tuple(map(float, line.split(":"))))
@@ -240,7 +249,7 @@ data_line.SetLineWidth(2)
 data_line.SetMarkerStyle(8)
 data_line.SetMarkerSize(0.75)
 data_line.SetMarkerColor(1)
-data_line.Draw("samePL")
+data_line.Draw("samePL")"""
 
 print(mass_points)
 theory_x = list(mass_points)
@@ -256,7 +265,7 @@ theory_line.SetLineColor(4)
 theory_line.SetLineWidth(2)
 theory_line.Draw("same")
 
-x_intersect = 0
+"""x_intersect = 0
 y_intersect = 0
 
 for x1, x2, data1, theory1, data2, theory2 in zip(theory_x, theory_x[1:], data_y, theory_y, data_y[1:], theory_y[1:]):
@@ -280,7 +289,7 @@ label = ROOT.TText()
 label.SetNDC()
 label.SetTextSize(0.04)
 label.SetTextFont(42)
-#label.DrawText(0.13, 0.85, "Observed data/theory intersect: {0:.0f} GeV".format(x_intersect))
+#label.DrawText(0.13, 0.85, "Observed data/theory intersect: {0:.0f} GeV".format(x_intersect))"""
 
 
 
@@ -311,39 +320,51 @@ label.SetTextSize(0.04)
 label.SetTextFont(42)
 #label.DrawText(0.13, 0.8, "Expected data/theory intersect: {0:.0f} GeV".format(exp_x_intersect))
 
-text_x = 0.6
+
+text_left = 0.57
+text_size = 0.05
+text_y = [0.875-0.055*i for i in range(0, 10)]
 
 ATLAS_label = ROOT.TText()
 ATLAS_label.SetNDC()
-ATLAS_label.SetTextSize(0.04)
+ATLAS_label.SetTextSize(text_size)
 ATLAS_label.SetTextFont(72)
 #ATLAS_label.DrawText(0.575, 0.7, "ATLAS preliminary")
-ATLAS_label.DrawText(text_x, 0.84, "ATLAS internal")
+ATLAS_label.DrawText(text_left, text_y[0], "ATLAS internal")
 
 
 label = ROOT.TLatex()
 label.SetNDC()
-label.SetTextSize(0.04)
+label.SetTextSize(text_size)
 label.SetTextFont(42)
 #label.DrawLatex(0.575, 0.645, "#sqrt{s} = 13 TeV, 70fb^{-1}")
-label.DrawLatex(text_x, 0.785, "#sqrt{s} = 13 TeV, %sfb^{-1}" % str(fb))
+label.DrawLatex(text_left, text_y[1], "#sqrt{s} = 13 TeV, %sfb^{-1}" % str(fb))
 
 
 label = ROOT.TLatex()
 label.SetNDC()
-label.SetTextSize(0.04)
+label.SetTextSize(text_size)
 label.SetTextFont(42)
 #label.DrawLatex(0.575, 0.645, "#sqrt{s} = 13 TeV, 70fb^{-1}")
-label.DrawLatex(text_x, 0.73, "|y*| < %s" % str(rapidity))
+label.DrawLatex(text_left, text_y[2], "|y*| < %s" % str(rapidity))
 
-legend = TLegend(0.125, 0.125, 0.6, 0.3)
+label = ROOT.TLatex()
+label.SetNDC()
+label.SetTextSize(text_size)
+label.SetTextFont(42)
+label.SetTextColor(2)
+label.SetTextFont(62)
+#label.DrawLatex(0.575, 0.645, "#sqrt{s} = 13 TeV, 70fb^{-1}")
+label.DrawText(text_left, text_y[3], "SIMULATION")
+
+legend = TLegend(0.145, 0.145, 0.75, 0.33)
 legend.SetMargin(0.15)
 legend.SetBorderSize(0)
 legend.SetFillStyle(0)
 legend.AddEntry(theory_line, particle_symbol, "l")
-legend.AddEntry(data_line, "Observed 95% CL upper limit", "lp")
-legend.AddEntry(brazil_line, "Expected 95% CL upper limit", "l")
-legend.AddEntry(brazil_yellow, "Expected #pm1#sigma and #pm2#sigma")
+#legend.AddEntry(data_line, "Observed 95% CL upper limit", "lp")
+legend.AddEntry(brazil_line, "Exp. 95% CL upper limit", "l")
+legend.AddEntry(brazil_yellow, "Exp. #pm1#sigma and #pm2#sigma")
 legend.Draw()
 
 
@@ -353,7 +374,7 @@ canvas.SaveAs("plt{0}/brazil-{0}.png".format(job_id))
 canvas.SaveAs("plt{0}/brazil-{0}.pdf".format(job_id))
 
 with open("plt{0}/limits.txt".format(job_id), "w") as limit_file:
-    limit_file.write("Observed mass limit: {0} GeV\n".format(x_intersect))
-    limit_file.write("Observed cross section limit: {0} pb\n".format(y_intersect))
+    #limit_file.write("Observed mass limit: {0} GeV\n".format(x_intersect))
+    #limit_file.write("Observed cross section limit: {0} pb\n".format(y_intersect))
     limit_file.write("Expected mass limit: {0} GeV\n".format(exp_x_intersect))
     limit_file.write("Expected cross section limit: {0} pb\n".format(exp_y_intersect))
