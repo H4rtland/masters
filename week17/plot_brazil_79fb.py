@@ -161,8 +161,9 @@ for mass_folder in sorted(os.listdir(base_path)):
 
 mass_points = sorted(mass_points)
 
-"""brazil_data = sorted(brazil_data, key=itemgetter(0))
-print("With luminosity uncertainty")
+brazil_data = sorted(brazil_data, key=itemgetter(0))
+
+"""print("With luminosity uncertainty")
 print("Mass\tMean\tlow2s\tlow1s\thigh1s\thigh2s")
 for (mass, mean, rms, low_2, low_1, high_1, high_2) in brazil_data:
     print("{0:.0f}\t{1:.02f}\t{2:.02f}\t{3:.02f}\t{4:.02f}\t{5:.02f}".format(
