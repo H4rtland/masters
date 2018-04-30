@@ -1,4 +1,4 @@
-## Searching for Massive New Particles decaying to Jets at ATLAS
+## Searching for Massive New Particles Decaying to Jets at ATLAS
 
 ### Thomas Hartland
 
