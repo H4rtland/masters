@@ -68,10 +68,10 @@ canvas.SaveAs("pythia_background.pdf")
 ##################################################################################################################
 
 def generate_peak(name, infile, object, outfile, limits):
-    canvas2 = TCanvas("peak_{0}".format(outfile), "peaki_{0}".format(outfile), 0, 0, 600, 450)
+    canvas2 = TCanvas("peak_{0}".format(outfile), "peaki_{0}".format(outfile), 0, 0, 535, 450)
     #canvas2.SetLogy(True)
-    canvas2.SetBottomMargin(0.13)
-    canvas2.SetLeftMargin(0.13)
+    canvas2.SetBottomMargin(0.14)
+    canvas2.SetLeftMargin(0.15)
     canvas2.SetTopMargin(0.05)
     canvas2.SetRightMargin(0.05)
 
@@ -82,16 +82,17 @@ def generate_peak(name, infile, object, outfile, limits):
     peak_hist.SetTitle("")
 
     peak_hist.GetYaxis().SetTitle("{0} Events".format(name))
-    peak_hist.GetYaxis().SetTitleSize(0.05)
-    peak_hist.GetYaxis().SetLabelSize(0.04)
-    #peak_hist .GetYaxis().SetNdivisions(508)
+    peak_hist.GetYaxis().SetTitleSize(0.06)
+    peak_hist.GetYaxis().SetLabelSize(0.05)
+    peak_hist.GetYaxis().SetNdivisions(508)
 
-    peak_hist.GetXaxis().SetTitleSize(0.05)
-    peak_hist.GetXaxis().SetLabelSize(0.04)
+    peak_hist.GetXaxis().SetTitleSize(0.06)
+    peak_hist.GetXaxis().SetLabelSize(0.05)
+    peak_hist.GetXaxis().SetNdivisions(505)
     peak_hist.GetXaxis().SetRangeUser(*limits)
 
     peak_hist.GetXaxis().SetTitleOffset(1.05)
-    peak_hist.GetYaxis().SetTitleOffset(1.2)
+    peak_hist.GetYaxis().SetTitleOffset(1.25)
 
     peak_hist.Draw()
 

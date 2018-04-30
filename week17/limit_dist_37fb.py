@@ -22,7 +22,7 @@ print("Loading macros")
 
 gROOT.SetBatch(True)
 gROOT.LoadMacro("FitFunction.cpp+g")
-gROOT.LoadMacro("IABStyle.cpp+g")
+#gROOT.LoadMacro("IABStyle.cpp+g")
 
 print("Loaded macros")
 
@@ -299,13 +299,13 @@ def plot_data_histogram(fits, name):
     
     test_canvas.cd(1)
     
-    ROOT.IABstyles.canvas_style(test_canvas, 0.25, 0.05, 0.02, 0.15, 0, 0)
+    #ROOT.IABstyles.canvas_style(test_canvas, 0.25, 0.05, 0.02, 0.15, 0, 0)
     
     h_Mjj = TH1D("h_Mjj", "Mass Spectrum", 100, 0.2, 12)
     h_Mjj.GetYaxis().SetTitle("num. events")
     h_Mjj.GetXaxis().SetTitle("M [Tev/c^{-2}]")
     
-    ROOT.IABstyles.h1_style(h_Mjj, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    #ROOT.IABstyles.h1_style(h_Mjj, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
     
     h_Mjj.GetYaxis().SetRangeUser(0.1, 2.5e6)
     h_Mjj.GetXaxis().SetRangeUser(1, 10)
@@ -317,10 +317,10 @@ def plot_data_histogram(fits, name):
     lower_pad.SetLogx(1)
     
     gr = TGraphErrors(fits.num_bins, array("d", fits.xmiddle), array("d", fits.data), array("d", fits.xwidth), array("d", fits.errors))
-    ROOT.IABstyles.h1_style(gr, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 505, 505, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    #ROOT.IABstyles.h1_style(gr, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 505, 505, 8, ROOT.IABstyles.Scolor, 0.1, 0)
     
     grFit = TGraph(fits.num_bins, array("d", fits.xmiddle), array("d", fits.data_fits))
-    ROOT.IABstyles.h1_style(grFit, ROOT.IABstyles.lWidth//2, 632, 1, 0, 0, -1111, -1111, 505, 505, 8, 632, 0.1, 0)
+    #ROOT.IABstyles.h1_style(grFit, ROOT.IABstyles.lWidth//2, 632, 1, 0, 0, -1111, -1111, 505, 505, 8, 632, 0.1, 0)
     
     h_Mjj.Draw("axis")
     gr.Draw("P")
@@ -341,7 +341,7 @@ def plot_data_histogram(fits, name):
     sig_values = [(data-theory)/theory if (data!= 0 and theory != 0) else -100 for data, theory in zip(fits.data, fits.data_fits)]
     sig = TGraph(fits.num_bins, array("d", fits.xmiddle), array("d", sig_values))
     #ROOT.IABstyles.h1_style(sig, ROOT.IABstyles.lWidth/2, 632, 1, 0, 0, -1111, -1111, 505, 505, 8, 632, 0.1, 0)
-    ROOT.IABstyles.h1_style(gr, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 505, 505, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    #ROOT.IABstyles.h1_style(gr, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111, -1111, 505, 505, 8, ROOT.IABstyles.Scolor, 0.1, 0)
     sig.SetMarkerStyle(22) # triangle
     sig.SetMarkerColor(2)  # red
     sig.SetMarkerSize(0.8)
@@ -378,7 +378,7 @@ root_file.Close()
 root_file_model.Close()
 
 def fit_significance(num_injected_events, plot=True, name=""):
-    ROOT.IABstyles.global_style()
+    #ROOT.IABstyles.global_style()
     TGaxis.SetMaxDigits(3)
 
     hist_model_scaled = [num_injected_events*bin_content for bin_content in hist_model_contents]
@@ -468,34 +468,77 @@ def fit_significance(num_injected_events, plot=True, name=""):
         else:
             limit_x = None"""
     #return limit_x
-    canvas = TCanvas("dist", "dist", 0, 0, 650, 450)
+
+    for _x, _y in zip(x, y):
+        if _x == limit_x:
+            limit_y_2 = _y
+
+
+    canvas = TCanvas("dist", "dist", 0, 0, 525, 450)
+    canvas.SetLeftMargin(0.12)
+    canvas.SetBottomMargin(0.12)
+    gStyle.SetOptTitle(0)
+    canvas.SetTopMargin(0.04)
+    canvas.SetRightMargin(0.04)
     graph = TGraph(len(x), array("d", x), array("d", y))
-    ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
-    graph.SetMarkerColor(2)
+    #ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    graph.SetMarkerColor(4)
     graph.SetMarkerStyle(3)
-    graph.SetMarkerSize(1.25)
+    graph.SetMarkerSize(1)
+    graph.GetXaxis().SetTitle("Number of signal events")
+    graph.GetYaxis().SetTitle("Probability")
+    graph.GetXaxis().SetNoExponent(True)
+    graph.GetXaxis().SetTitleOffset(1.04)
+    graph.GetYaxis().SetTitleOffset(1.04)
+    graph.GetXaxis().SetLabelSize(0.045)
+    graph.GetYaxis().SetLabelSize(0.045)
+    graph.GetXaxis().SetTitleSize(0.05)
+    graph.GetYaxis().SetTitleSize(0.05)
     graph.Draw("ap")
-    label = ROOT.TText()
-    label.SetNDC()
-    label.SetTextSize(0.03)
-    label.DrawText(0.5, 0.7, "{0}GeV".format(MASS_FILE))
+    line = ROOT.TLine()
+    line.SetLineColor(2)
+    line.SetLineWidth(2)
+    line.DrawLine(limit_x, 0, limit_x, limit_y_2)
+    #label = ROOT.TText()
+    #label.SetNDC()
+    #label.SetTextSize(0.03)
+    #label.DrawText(0.5, 0.7, "{0}GeV".format(MASS_FILE))
     canvas.SaveAs("plots/{0}/{2}/plot-{1}-{2}-sig_dist.png".format(CLUSTER_ID, name, MASS_FILE))
     canvas.SaveAs("plots/{0}/{2}/plot-{1}-{2}-sig_dist.pdf".format(CLUSTER_ID, name, MASS_FILE))
 
-    canvas2 = TCanvas("cumsum", "cumsum", 0, 0, 650, 450)
+    canvas2 = TCanvas("cumsum", "cumsum", 0, 0, 525, 450)
+    gStyle.SetOptTitle(0)
+    canvas2.SetTopMargin(0.04)
+    canvas2.SetRightMargin(0.04)
+    canvas2.SetLeftMargin(0.12)
+    canvas2.SetBottomMargin(0.12)
     graph = TGraph(len(x), array("d", x), array("d", ycumulative))
-    ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
+    #ROOT.IABstyles.h1_style(graph, ROOT.IABstyles.lWidth//2, ROOT.IABstyles.Scolor, 1, 0, 0, -1111.0, -1111.0, 508, 508, 8, ROOT.IABstyles.Scolor, 0.1, 0)
     graph.SetMarkerColor(4)
     graph.SetMarkerStyle(3)
-    graph.SetMarkerSize(1.25)
+    graph.SetMarkerSize(1)
+    graph.GetXaxis().SetTitle("Number of signal events")
+    graph.GetYaxis().SetTitle("Cumulative probability")
+    graph.GetXaxis().SetNoExponent(True)
+    graph.GetXaxis().SetTitleOffset(1.04)
+    graph.GetYaxis().SetTitleOffset(1.04)
+    graph.GetXaxis().SetLabelSize(0.045)
+    graph.GetYaxis().SetLabelSize(0.045)
+    graph.GetXaxis().SetTitleSize(0.05)
+    graph.GetYaxis().SetTitleSize(0.05)
     graph.Draw("ap")
-    line = ROOT.TLine(limit_x, 0, limit_x, limit_y)
+    line = ROOT.TLine()
     line.SetLineColor(2)
-    line.Draw("same")
-    label = ROOT.TText()
-    label.SetNDC()
-    label.SetTextSize(0.03)
-    label.DrawText(0.5, 0.7, "{0}GeV particle {1:.02f} confidence limit = {2} events".format(MASS_FILE, limit_y, limit_x))
+    line.SetLineWidth(2)
+    line.DrawLine(limit_x, 0, limit_x, limit_y)
+    line = ROOT.TLine()
+    line.SetLineColor(2)
+    line.SetLineWidth(2)
+    line.DrawLine(0, 0.95, limit_x, 0.95)
+    #label = ROOT.TText()
+    #label.SetNDC()
+    #label.SetTextSize(0.03)
+    #label.DrawText(0.5, 0.7, "{0}GeV particle {1:.02f} confidence limit = {2} events".format(MASS_FILE, limit_y, limit_x))
     canvas2.SaveAs("plots/{0}/{2}/plot-{1}-{2}-sig_cumsum.png".format(CLUSTER_ID, name, MASS_FILE))
     canvas2.SaveAs("plots/{0}/{2}/plot-{1}-{2}-sig_cumsum.pdf".format(CLUSTER_ID, name, MASS_FILE))
 
@@ -513,7 +556,7 @@ def plot_95pc_confidence_dist():
     if not op.exists("plots/{0}/{1}".format(CLUSTER_ID, MASS_FILE)):
         os.makedirs("plots/{0}/{1}".format(CLUSTER_ID, MASS_FILE))
     
-    want_successes = 250
+    want_successes = 25
     successes = 0
     total_iterations = 0
     times_taken = []

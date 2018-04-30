@@ -163,6 +163,7 @@ mass_points = sorted(mass_points)
 
 brazil_data = sorted(brazil_data, key=itemgetter(0))
 
+
 """print("With luminosity uncertainty")
 print("Mass\tMean\tlow2s\tlow1s\thigh1s\thigh2s")
 for (mass, mean, rms, low_2, low_1, high_1, high_2) in brazil_data:
@@ -171,6 +172,11 @@ for (mass, mean, rms, low_2, low_1, high_1, high_2) in brazil_data:
 sys.exit(0)"""
 
 brazil_data = [(x, m/fb2, r/fb2, a/fb2, b/fb2, c/fb2, d/fb2) for x, m, r, a, b, c, d in brazil_data]
+
+with open("b_{0}.txt".format(job_id), "w") as out_file:
+    out_file.write("{0}\n".format(particle))
+    for x, m, r, a, b, c,d in brazil_data:
+        out_file.write("e:{0}:{1}\n".format(x, m))
 
 canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
@@ -231,6 +237,10 @@ data_mass_limit_pairs = []
 with open(data_cl_file, "r") as data_file:
     for line in data_file.readlines():
         data_mass_limit_pairs.append(tuple(map(float, line.split(":"))))
+
+with open("b_{0}.txt".format(job_id), "a") as out_file:
+    for a, b in data_mass_limit_pairs:
+        out_file.write("o:{0}:{1}\n".format(a, b/fb2))
 
 data_x, data_y = zip(*sorted(data_mass_limit_pairs, key=itemgetter(0)))
 data_y = [dy/fb2 for dy in data_y]

@@ -101,6 +101,7 @@ for mass_folder in sorted(os.listdir(base_path)):
     bins = int(bin_end/binsize)
     hist = TH1D("dist{0}".format(mass), "dist", bins, 0, bin_end)
     r = TRandom1()
+    number_of_limits = 0
     for result_file_name in os.listdir(op.join(base_path, mass_folder)):
         with open(op.join(base_path, mass_folder, result_file_name), "r") as result_file:
             for i, line in enumerate(result_file.readlines()):
@@ -112,9 +113,12 @@ for mass_folder in sorted(os.listdir(base_path)):
                 #if i % 1000 == 0:
                 #    print(limit, lum, limit2)
                 hist.Fill(limit2)
+                number_of_limits += 1
                 #hist.Fill(fb*limit/r.Gaus(fb, 0.032*fb))
                 #hist.Fill(limit)
     
+    print("Mass {0}, number of limits {1}".format(mass, number_of_limits))
+
     mean = hist.GetMean()
     rms = hist.GetRMS()
     
@@ -171,6 +175,12 @@ for (mass, mean, rms, low_2, low_1, high_1, high_2) in brazil_data:
 sys.exit(0)"""
 
 brazil_data = [(x, m/fb2, r/fb2, a/fb2, b/fb2, c/fb2, d/fb2) for x, m, r, a, b, c, d in brazil_data]
+
+with open("b_{0}.txt".format(job_id), "w") as out_file:
+    out_file.write("{0}\n".format(particle))
+    for x, m, r, a, b, c,d in brazil_data:
+        out_file.write("e:{0}:{1}\n".format(x, m))
+sys.exit(0)
 
 canvas = TCanvas(particle, particle, 0, 0, 600, 550)
 canvas.SetLogy(True)
